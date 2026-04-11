@@ -1,0 +1,159 @@
+/**************************************************** FILE 1: planner.html (ADVANCED RESPONSIVE VERSION) ****************************************************/
+
+<!DOCTYPE html><html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SmartStudy AI - Planner</title><!-- Google Font --><link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet"><!-- CSS --><link rel="stylesheet" href="style.css"></head><body><!-- ================= HEADER (SAME AS INDEX PAGE) ================= --><header class="header">
+  <div class="logo">📘 SmartStudy AI</div>  <nav class="nav">
+    <a href="../index.html">🏠 Home</a>
+    <a href="dashboard.html">📊 Dashboard</a>
+    <a href="planner.html">📅 Planner</a>
+    <a href="progress.html">📈 Progress</a>
+    <a href="chatbot.html">🤖 AI Chat</a>
+    <a href="courses.html">📚 Courses</a>
+    <a href="contact.html">📞 Contact</a>
+    <a href="login.html" class="login">🔐 Login</a><button onclick="toggleDark()" class="darkBtn">🌙</button>
+
+  </nav>
+</header><!-- ================= MAIN ================= --><main class="container">  <!-- LEFT PANEL -->  <section class="card">
+    <h2>➕ Create Task</h2><input id="title" placeholder="Task title">
+<textarea id="desc" placeholder="Task description"></textarea>
+
+<select id="priority">
+  <option value="Low">🟢 Low</option>
+  <option value="Medium">🟡 Medium</option>
+  <option value="High">🔴 High</option>
+</select>
+
+<input type="date" id="date">
+
+<button onclick="addTask()">Add Task</button>
+
+<div class="stats">
+  <p>Total Tasks: <span id="total">0</span></p>
+  <p>Completed: <span id="done">0</span></p>
+</div>
+
+<!-- Pomodoro -->
+<div class="pomodoro">
+  <h3>⏱ Pomodoro Timer</h3>
+  <div id="timer">25:00</div>
+  <button onclick="startTimer()">Start</button>
+  <button onclick="resetTimer()">Reset</button>
+</div>
+
+  </section>  <!-- CENTER PANEL -->  <section class="card"><h2>📋 Tasks</h2>
+
+<input id="search" onkeyup="renderTasks()" placeholder="🔍 Search tasks...">
+
+<div id="taskList"></div>
+
+  </section>  <!-- RIGHT PANEL -->  <section class="card"><h2>📊 Progress</h2>
+<canvas id="chart"></canvas>
+
+<h2>📅 Calendar</h2>
+<div id="calendar"></div>
+
+  </section></main><!-- ================= FOOTER (SAME AS INDEX PAGE) ================= --><footer class="footer">
+  <div>
+    <h3>📘 SmartStudy AI</h3>
+    <p>Your AI Study Companion</p>
+  </div>  <div>
+    <h3>Links</h3>
+    <p>Dashboard | Planner | Progress</p>
+  </div>  <div>
+    <h3>Contact</h3>
+    <p>support@smartstudy.ai</p>
+  </div></footer><script src="script.js"></script></body>
+</html>/**************************************************** FILE 2: style.css (RESPONSIVE + DARK MODE + MODERN UI) ****************************************************/
+
+*{ margin:0; padding:0; box-sizing:border-box; font-family:Poppins; }
+
+body{ background:#f1f5f9; transition:0.3s; }
+
+body.dark{ background:#0f172a; color:white; }
+
+/* HEADER */ .header{ position:fixed; top:0; width:100%; background:#2563eb; color:white; display:flex; justify-content:space-between; align-items:center; padding:15px; z-index:1000; flex-wrap:wrap; }
+
+.nav a, .nav button{ margin:5px; padding:6px 10px; border-radius:6px; text-decoration:none; background:black; color:white; border:none; cursor:pointer; }
+
+.login{ background:white; color:#2563eb; }
+
+/* LAYOUT */ .container{ display:grid; grid-template-columns:repeat(3,1fr); gap:15px; padding:100px 15px; }
+
+.card{ background:white; padding:15px; border-radius:12px; box-shadow:0 5px 20px rgba(0,0,0,0.1); }
+
+body.dark .card{ background:#1e293b; }
+
+input,textarea,select{ width:100%; margin:10px 0; padding:10px; border-radius:8px; border:1px solid #ccc; }
+
+button{ padding:10px; background:#2563eb; color:white; border:none; border-radius:8px; cursor:pointer; margin:5px 0; }
+
+button:hover{ background:#1d4ed8; }
+
+.task{ background:#e2e8f0; padding:10px; margin-top:10px; border-radius:8px; }
+
+body.dark .task{ background:#334155; }
+
+.stats{ margin-top:15px; }
+
+#timer{ font-size:30px; text-align:center; margin:10px 0; }
+
+/* CALENDAR */ #calendar{ display:grid; grid-template-columns:repeat(7,1fr); gap:5px; margin-top:10px; }
+
+#calendar div{ padding:10px; background:#e5e7eb; text-align:center; border-radius:6px; }
+
+body.dark #calendar div{ background:#334155; }
+
+/* FOOTER */ .footer{ background:#111827; color:white; display:grid; grid-template-columns:repeat(3,1fr); padding:20px; margin-top:20px; }
+
+/* RESPONSIVE */ @media(max-width:900px){ .container{ grid-template-columns:1fr; } }
+
+/**************************************************** FILE 3: script.js (ADVANCED LOGIC) ****************************************************/
+
+let tasks = JSON.parse(localStorage.getItem("tasks")) || []; let time = 1500; let timer; let chartInstance;
+
+function save(){ localStorage.setItem("tasks", JSON.stringify(tasks)); }
+
+function addTask(){ const t = document.getElementById("title").value; const d = document.getElementById("desc").value; const p = document.getElementById("priority").value; const dt = document.getElementById("date").value;
+
+if(!t) return alert("Enter task");
+
+tasks.push({id:Date.now(),title:t,desc:d,priority:p,date:dt,done:false});
+
+save(); renderTasks(); renderChart(); }
+
+function renderTasks(){ let list=document.getElementById("taskList"); let search=document.getElementById("search").value.toLowerCase();
+
+list.innerHTML="";
+
+tasks.filter(t=>t.title.toLowerCase().includes(search)) .forEach(t=>{ let div=document.createElement("div"); div.className="task"; div.innerHTML=<b>${t.title}</b><br> ${t.desc}<br> ${t.priority} | ${t.date}<br> <button onclick="toggle(${t.id})">✔</button> <button onclick="del(${t.id})">🗑</button>; list.appendChild(div); });
+
+document.getElementById("total").innerText=tasks.length; document.getElementById("done").innerText=tasks.filter(t=>t.done).length; }
+
+function toggle(id){ tasks=tasks.map(t=>t.id===id?{...t,done:!t.done}:t); save();renderTasks();renderChart(); }
+
+function del(id){ tasks=tasks.filter(t=>t.id!==id); save();renderTasks();renderChart(); }
+
+/******** POMODORO ********/ function startTimer(){ timer=setInterval(()=>{ if(time<=0){clearInterval(timer);alert("Time up!");return;} time--; document.getElementById("timer").innerText= Math.floor(time/60)+":"+(time%60); },1000); }
+
+function resetTimer(){ clearInterval(timer); time=1500; document.getElementById("timer").innerText="25:00"; }
+
+/******** CHART ********/ function renderChart(){ let done=tasks.filter(t=>t.done).length; let pending=tasks.length-done;
+
+if(chartInstance) chartInstance.destroy();
+
+let ctx=document.getElementById("chart");
+
+chartInstance=new Chart(ctx,{ type:"doughnut", data:{ labels:["Done","Pending"], datasets:[{data:[done,pending]}] } }); }
+
+/******** CALENDAR ********/ function loadCalendar(){ let cal=document.getElementById("calendar"); let html="";
+
+for(let i=1;i<=30;i++){ html+=<div>${i}</div>; }
+
+cal.innerHTML=html; }
+
+/******** DARK MODE ********/ function toggleDark(){ document.body.classList.toggle("dark"); }
+
+renderTasks(); renderChart(); loadCalendar();

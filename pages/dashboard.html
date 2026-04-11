@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Dashboard - SmartStudy AI</title>
+
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="stylesheet" href="../css/dashboard.css">
+<link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+
+</head>
+
+<body class="bg-gray-100">
+
+<!-- ================= HEADER (SAME AS INDEX) ================= -->
+<header class="fixed w-full top-0 z-50 text-white p-5 shadow-lg bg-blue-700">
+  <div class="flex justify-between items-center max-w-7xl mx-auto">
+    
+    <h1 class="text-2xl font-bold">📘 SmartStudy AI</h1>
+
+    <nav class="space-x-4 text-lg flex items-center flex-wrap">
+
+      <a href="../index.html">🏠 Home</a>
+      <a href="dashboard.html" class="font-bold underline">📊 Dashboard</a>
+      <a href="planner.html">📅 Planner</a>
+      <a href="progress.html">📈 Progress</a>
+      <a href="chatbot.html">🤖 AI Chat</a>
+      <a href="courses.html">📚 Courses</a>
+      <a href="contact.html">📞 Contact</a>
+
+      <a href="login.html" class="bg-white text-blue-700 px-3 py-1 rounded">
+        🔐 Login
+      </a>
+
+    </nav>
+  </div>
+</header>
+
+<!-- ================= MAIN CONTENT ================= -->
+<div class="flex pt-24">
+
+<!-- SIDEBAR -->
+<div class="sidebar w-64 text-white p-4">
+  <h2 class="text-lg font-bold mb-3">Menu</h2>
+  <a href="dashboard.html">📊 Dashboard</a>
+  <a href="planner.html">📅 Planner</a>
+  <a href="progress.html">📈 Progress</a>
+  <a href="chatbot.html">🤖 Chatbot</a>
+  <a href="courses.html">📚 Courses</a>
+  <a href="contact.html">📞 Contact</a>
+</div>
+
+<!-- MAIN -->
+<div class="main p-6 w-full">
+
+<h2 class="text-2xl font-bold mb-4">Welcome Back 👋</h2>
+
+<!-- CARDS -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+
+  <div class="card p-5 shadow">
+    <h3>📅 Tasks</h3>
+    <p id="taskCount" class="text-2xl">0</p>
+  </div>
+
+  <div class="card p-5 shadow">
+    <h3>⏱ Study Time</h3>
+    <p id="studyTime" class="text-2xl">0 min</p>
+  </div>
+
+  <div class="card p-5 shadow">
+    <h3>📊 Progress</h3>
+    <div class="bg-gray-200 h-4 rounded mt-2">
+      <div id="progressBar" class="bg-green-500 h-4 rounded" style="width:20%"></div>
+    </div>
+  </div>
+
+</div>
+
+<!-- TODO -->
+<div class="mt-8 card p-5 shadow">
+  <h3 class="text-xl mb-3">📝 To-Do List</h3>
+
+  <input id="taskInput" placeholder="Enter task" class="border p-2 rounded w-1/2">
+  <button onclick="addTask()" class="bg-blue-600 text-white px-4 py-2 rounded">Add</button>
+
+  <ul id="taskList" class="mt-4"></ul>
+</div>
+
+<!-- TIMER -->
+<div class="mt-8 card p-5 shadow">
+  <h3 class="text-xl mb-3">⏱ Pomodoro Timer</h3>
+
+  <p id="timer" class="text-3xl mb-3">25:00</p>
+
+  <button onclick="startTimer()" class="bg-green-500 text-white px-4 py-2 rounded">Start</button>
+  <button onclick="resetTimer()" class="bg-red-500 text-white px-4 py-2 rounded">Reset</button>
+</div>
+
+</div>
+</div>
+
+<!-- ================= FOOTER (SAME AS INDEX WITH EMOJIS) ================= -->
+<footer class="bg-gray-900 text-white py-10 mt-10">
+
+  <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-8">
+
+    <div>
+      <h3 class="font-bold text-lg mb-3">📘 SmartStudy AI</h3>
+      <p class="text-gray-400">
+        🎯 Your smart study partner <br>
+        🤖 Powered by AI tools <br>
+        🚀 Boost your productivity
+      </p>
+    </div>
+
+    <div>
+      <h3 class="font-bold mb-3">🔗 Quick Links</h3>
+      <ul class="text-gray-400 space-y-2">
+        <li>🏠 <a href="dashboard.html">Dashboard</a></li>
+        <li>📅 <a href="planner.html">Planner</a></li>
+        <li>📊 <a href="progress.html">Progress</a></li>
+        <li>🤖 <a href="chatbot.html">AI Chat</a></li>
+      </ul>
+    </div>
+
+    <div>
+      <h3 class="font-bold mb-3">📚 Courses</h3>
+      <ul class="text-gray-400 space-y-2">
+        <li>💻 Programming</li>
+        <li>🧠 AI Basics</li>
+        <li>⏳ Time Management</li>
+      </ul>
+    </div>
+
+    <div>
+      <h3 class="font-bold mb-3">📞 Contact</h3>
+      <p class="text-gray-400">
+        📧 support@smartstudy.ai <br>
+        📍 India <br>
+        ☎️ +91 98765 43210
+      </p>
+    </div>
+
+  </div>
+
+  <div class="text-center text-gray-500 mt-8 border-t border-gray-700 pt-4">
+    © 2026 📘 SmartStudy AI | Made with ❤️ for students
+  </div>
+
+</footer>
+
+<script src="../js/dashboard.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,83 @@
+/* GLOBAL */
+body {
+  font-family: 'Poppins', sans-serif;
+}
+
+/* SIDEBAR */
+.sidebar {
+  background: linear-gradient(180deg, #1e3a8a, #1e40af);
+  min-height: 100vh;
+}
+
+.sidebar a {
+  display: block;
+  padding: 10px;
+  margin-bottom: 6px;
+  border-radius: 8px;
+  transition: 0.3s;
+}
+
+.sidebar a:hover {
+  background: rgba(255,255,255,0.2);
+  transform: translateX(5px);
+}
+
+/* MAIN */
+.main {
+  animation: fadeIn 0.7s ease;
+}
+
+/* CARDS */
+.card {
+  background: white;
+  border-radius: 15px;
+  transition: 0.3s;
+}
+
+.card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+}
+
+/* INPUT */
+input {
+  outline: none;
+}
+
+input:focus {
+  border-color: #2563eb;
+  box-shadow: 0 0 5px #2563eb;
+}
+
+/* LIST */
+ul li {
+  padding: 8px;
+  margin-bottom: 5px;
+  background: #f9fafb;
+  border-radius: 8px;
+}
+
+ul li button {
+  float: right;
+  cursor: pointer;
+}
+
+/* BUTTON */
+button {
+  transition: 0.3s;
+}
+
+button:hover {
+  transform: scale(1.05);
+}
+
+/* PROGRESS */
+#progressBar {
+  transition: width 0.5s;
+}
+
+/* ANIMATION */
+@keyframes fadeIn {
+  from {opacity:0;}
+  to {opacity:1;}
+}

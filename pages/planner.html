@@ -1,159 +1,204 @@
-/**************************************************** FILE 1: planner.html (ADVANCED RESPONSIVE VERSION) ****************************************************/
-
-<!DOCTYPE html><html lang="en">
+<!DOCTYPE html>
+<html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SmartStudy AI - Planner</title><!-- Google Font --><link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet"><!-- CSS --><link rel="stylesheet" href="style.css"></head><body><!-- ================= HEADER (SAME AS INDEX PAGE) ================= --><header class="header">
-  <div class="logo">📘 SmartStudy AI</div>  <nav class="nav">
-    <a href="../index.html">🏠 Home</a>
-    <a href="dashboard.html">📊 Dashboard</a>
-    <a href="planner.html">📅 Planner</a>
-    <a href="progress.html">📈 Progress</a>
-    <a href="chatbot.html">🤖 AI Chat</a>
-    <a href="courses.html">📚 Courses</a>
-    <a href="contact.html">📞 Contact</a>
-    <a href="login.html" class="login">🔐 Login</a><button onclick="toggleDark()" class="darkBtn">🌙</button>
+<title>SmartStudy AI</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="stylesheet" href="../css/planner.css">
+<link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+</head>
 
-  </nav>
-</header><!-- ================= MAIN ================= --><main class="container">  <!-- LEFT PANEL -->  <section class="card">
-    <h2>➕ Create Task</h2><input id="title" placeholder="Task title">
-<textarea id="desc" placeholder="Task description"></textarea>
+<body class="bg-gray-100">
 
-<select id="priority">
-  <option value="Low">🟢 Low</option>
-  <option value="Medium">🟡 Medium</option>
-  <option value="High">🔴 High</option>
-</select>
+<!-- HEADER -->
+<header class="fixed w-full top-0 z-50 text-white p-5 shadow-lg bg-blue-600">
+  <div class="flex justify-between items-center max-w-7xl mx-auto">
+    
+    <h1 class="text-2xl font-bold">📅 SmartStudy Planner</h1>
 
-<input type="date" id="date">
+    <nav class="space-x-4 text-lg flex items-center flex-wrap">
+      <a href="../index.html">🏠 Home</a>
+      <a href="dashboard.html">📊 Dashboard</a>
+      <a href="planner.html">📅 Planner</a>
+      <a href="progress.html">📈 Progress</a>
+      <a href="chatbot.html">🤖 AI Chat</a>
+    </nav>
+  </div>
+</header><!-- ================= HERO ================= -->
+<section class="pt-28 text-center py-16 bg-blue-600 text-white">
+  <h2 class="text-4xl font-bold mb-4">Plan Your Study Smartly 📅</h2>
+  <p class="text-lg mb-4">Organize your tasks and manage your time effectively</p>
+  
+  <p class="text-sm text-gray-200">Stay consistent, track progress & achieve your goals 🚀</p>
+</section>
 
-<button onclick="addTask()">Add Task</button>
+<section class="max-w-5xl mx-auto p-10">
+  <div class="bg-white p-6 shadow-lg rounded-lg">
 
-<div class="stats">
-  <p>Total Tasks: <span id="total">0</span></p>
-  <p>Completed: <span id="done">0</span></p>
-</div>
+    <input id="searchInput" type="text" placeholder="🔍 Search tasks..."
+      class="p-3 border rounded w-full mb-4">
 
-<!-- Pomodoro -->
-<div class="pomodoro">
-  <h3>⏱ Pomodoro Timer</h3>
-  <div id="timer">25:00</div>
-  <button onclick="startTimer()">Start</button>
-  <button onclick="resetTimer()">Reset</button>
-</div>
+    <div class="flex gap-3 mb-6 justify-center flex-wrap">
+      <button class="filter-btn bg-gray-500 text-white px-4 py-1 rounded" data-filter="all">All</button>
+      <button class="filter-btn bg-red-500 text-white px-4 py-1 rounded" data-filter="High">High</button>
+      <button class="filter-btn bg-yellow-500 text-white px-4 py-1 rounded" data-filter="Medium">Medium</button>
+      <button class="filter-btn bg-green-500 text-white px-4 py-1 rounded" data-filter="Low">Low</button>
+    </div>
 
-  </section>  <!-- CENTER PANEL -->  <section class="card"><h2>📋 Tasks</h2>
+    <div class="bg-white p-4 rounded shadow mb-6 text-center">
+      <h3 class="font-bold text-lg">📊 Progress</h3>
+      <p id="progressText">0 / 0 Tasks Completed</p>
+      <div class="w-full bg-gray-200 rounded h-3 mt-2">
+        <div id="progressBar" class="bg-green-500 h-3 rounded w-0"></div>
+      </div>
+    </div>
 
-<input id="search" onkeyup="renderTasks()" placeholder="🔍 Search tasks...">
+    <div class="grid grid-cols-3 gap-4 text-center mb-6">
+      <div class="bg-gray-100 p-3 rounded">
+        <p class="text-sm text-gray-500">Total</p>
+        <p id="totalTasks" class="font-bold text-lg">0</p>
+      </div>
+      <div class="bg-gray-100 p-3 rounded">
+        <p class="text-sm text-gray-500">Completed</p>
+        <p id="completedTasks" class="font-bold text-lg">0</p>
+      </div>
+      <div class="bg-gray-100 p-3 rounded">
+        <p class="text-sm text-gray-500">Pending</p>
+        <p id="pendingTasks" class="font-bold text-lg">0</p>
+      </div>
+    </div>
 
-<div id="taskList"></div>
+    <h3 class="text-2xl font-bold mb-4">➕ Add New Task</h3>
+    <form id="taskForm" class="grid grid-cols-1 md:grid-cols-3 gap-4">
+      
+      <input id="taskTitle" type="text" placeholder="Task Title"
+        class="p-3 border rounded">
 
-  </section>  <!-- RIGHT PANEL -->  <section class="card"><h2>📊 Progress</h2>
-<canvas id="chart"></canvas>
+      <input id="taskDate" type="date"
+        class="p-3 border rounded">
 
-<h2>📅 Calendar</h2>
-<div id="calendar"></div>
+      <select id="taskPriority" class="p-3 border rounded">
+        <option>Priority</option>
+        <option>High</option>
+        <option>Medium</option>
+        <option>Low</option>
+      </select>
 
-  </section></main><!-- ================= FOOTER (SAME AS INDEX PAGE) ================= --><footer class="footer">
-  <div>
-    <h3>📘 SmartStudy AI</h3>
-    <p>Your AI Study Companion</p>
-  </div>  <div>
-    <h3>Links</h3>
-    <p>Dashboard | Planner | Progress</p>
-  </div>  <div>
-    <h3>Contact</h3>
-    <p>support@smartstudy.ai</p>
-  </div></footer><script src="script.js"></script></body>
-</html>/**************************************************** FILE 2: style.css (RESPONSIVE + DARK MODE + MODERN UI) ****************************************************/
+      <input type="time" class="p-3 border rounded md:col-span-3">
 
-*{ margin:0; padding:0; box-sizing:border-box; font-family:Poppins; }
+      <textarea id="taskDesc" placeholder="Task Description"
+        class="p-3 border rounded md:col-span-3"></textarea>
 
-body{ background:#f1f5f9; transition:0.3s; }
+      <textarea placeholder="Extra Notes (optional)"
+        class="p-3 border rounded md:col-span-3"></textarea>
 
-body.dark{ background:#0f172a; color:white; }
+      <button type="submit"
+        class="bg-yellow-400 text-black px-6 py-2 rounded font-bold md:col-span-3 hover:bg-yellow-500">
+        Add Task ➕
+      </button>
+    </form>
 
-/* HEADER */ .header{ position:fixed; top:0; width:100%; background:#2563eb; color:white; display:flex; justify-content:space-between; align-items:center; padding:15px; z-index:1000; flex-wrap:wrap; }
+  </div>
+</section>
+<section class="max-w-6xl mx-auto p-10">
 
-.nav a, .nav button{ margin:5px; padding:6px 10px; border-radius:6px; text-decoration:none; background:black; color:white; border:none; cursor:pointer; }
+  <h3 class="text-2xl font-bold mb-4 text-center">📋 Your Tasks</h3>
 
-.login{ background:white; color:#2563eb; }
+  <div class="flex justify-between items-center mb-6 flex-wrap gap-3">
+    
+    <p class="text-gray-600 text-sm">
+      Total Tasks: <span id="taskCount" class="font-bold">0</span>
+    </p>
 
-/* LAYOUT */ .container{ display:grid; grid-template-columns:repeat(3,1fr); gap:15px; padding:100px 15px; }
+    <button onclick="clearAllTasks()"
+      class="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600 text-sm">
+      Clear All ❌
+    </button>
+  </div>
 
-.card{ background:white; padding:15px; border-radius:12px; box-shadow:0 5px 20px rgba(0,0,0,0.1); }
+  <div id="taskList" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
 
-body.dark .card{ background:#1e293b; }
+    <div class="bg-white p-5 shadow-lg rounded-lg">
+      <h4 class="text-xl font-bold">📘 Study JavaScript</h4>
+      <p class="text-gray-500">Deadline: 2026-04-15</p>
+      <p class="mt-2">Complete arrays and objects topics</p>
 
-input,textarea,select{ width:100%; margin:10px 0; padding:10px; border-radius:8px; border:1px solid #ccc; }
+      <div class="mt-4 flex justify-between items-center">
+        
+        <span class="bg-red-500 text-white px-2 py-1 rounded text-sm">High</span>
 
-button{ padding:10px; background:#2563eb; color:white; border:none; border-radius:8px; cursor:pointer; margin:5px 0; }
+        <div class="flex gap-2">
+          <button class="bg-green-500 text-white px-2 py-1 rounded text-sm">
+            ✓
+          </button>
+          <button class="bg-red-500 text-white px-2 py-1 rounded text-sm">
+            ✕
+          </button>
+        </div>
 
-button:hover{ background:#1d4ed8; }
+      </div>
+    </div>
 
-.task{ background:#e2e8f0; padding:10px; margin-top:10px; border-radius:8px; }
+  </div>
 
-body.dark .task{ background:#334155; }
+  <div id="emptyState" class="text-center text-gray-500 mt-10 hidden">
+    <p class="text-lg">📭 No tasks added yet</p>
+    <p class="text-sm">Start by adding a new task above 👆</p>
+  </div>
 
-.stats{ margin-top:15px; }
+</section>
+     
+<!-- FOOTER -->
+<footer class="bg-gray-900 text-white py-10 mt-10">
 
-#timer{ font-size:30px; text-align:center; margin:10px 0; }
+  <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-8">
 
-/* CALENDAR */ #calendar{ display:grid; grid-template-columns:repeat(7,1fr); gap:5px; margin-top:10px; }
+    <div>
+      <h3 class="font-bold text-lg mb-3">📘 SmartStudy AI</h3>
+      <p class="text-gray-400">
+        🎯 Your smart study partner <br>
+        🤖 Powered by AI tools <br>
+        🚀 Boost your productivity
+      </p>
+    </div>
 
-#calendar div{ padding:10px; background:#e5e7eb; text-align:center; border-radius:6px; }
+    <div>
+      <h3 class="font-bold mb-3">🔗 Quick Links</h3>
+      <ul class="text-gray-400 space-y-2">
+        <li>🏠 <a href="dashboard.html">Dashboard</a></li>
+        <li>📅 <a href="planner.html">Planner</a></li>
+        <li>📊 <a href="progress.html">Progress</a></li>
+        <li>🤖 <a href="chatbot.html">AI Chat</a></li>
+      </ul>
+    </div>
 
-body.dark #calendar div{ background:#334155; }
+    <div>
+      <h3 class="font-bold mb-3">📚 Courses</h3>
+      <ul class="text-gray-400 space-y-2">
+        <li>💻 Programming</li>
+        <li>🧠 AI Basics</li>
+        <li>⏳ Time Management</li>
+      </ul>
+    </div>
 
-/* FOOTER */ .footer{ background:#111827; color:white; display:grid; grid-template-columns:repeat(3,1fr); padding:20px; margin-top:20px; }
+    <div>
+      <h3 class="font-bold mb-3">📞 Contact</h3>
+      <p class="text-gray-400">
+        📧 support@smartstudy.ai <br>
+        📍 India <br>
+        ☎️ +91 98765 43210
+      </p>
+    </div>
 
-/* RESPONSIVE */ @media(max-width:900px){ .container{ grid-template-columns:1fr; } }
+  </div>
 
-/**************************************************** FILE 3: script.js (ADVANCED LOGIC) ****************************************************/
+  <div class="text-center text-gray-500 mt-8 border-t border-gray-700 pt-4">
+    © 2026 📘 SmartStudy AI | Made with ❤️ for students
+  </div>
 
-let tasks = JSON.parse(localStorage.getItem("tasks")) || []; let time = 1500; let timer; let chartInstance;
+</footer>
 
-function save(){ localStorage.setItem("tasks", JSON.stringify(tasks)); }
-
-function addTask(){ const t = document.getElementById("title").value; const d = document.getElementById("desc").value; const p = document.getElementById("priority").value; const dt = document.getElementById("date").value;
-
-if(!t) return alert("Enter task");
-
-tasks.push({id:Date.now(),title:t,desc:d,priority:p,date:dt,done:false});
-
-save(); renderTasks(); renderChart(); }
-
-function renderTasks(){ let list=document.getElementById("taskList"); let search=document.getElementById("search").value.toLowerCase();
-
-list.innerHTML="";
-
-tasks.filter(t=>t.title.toLowerCase().includes(search)) .forEach(t=>{ let div=document.createElement("div"); div.className="task"; div.innerHTML=<b>${t.title}</b><br> ${t.desc}<br> ${t.priority} | ${t.date}<br> <button onclick="toggle(${t.id})">✔</button> <button onclick="del(${t.id})">🗑</button>; list.appendChild(div); });
-
-document.getElementById("total").innerText=tasks.length; document.getElementById("done").innerText=tasks.filter(t=>t.done).length; }
-
-function toggle(id){ tasks=tasks.map(t=>t.id===id?{...t,done:!t.done}:t); save();renderTasks();renderChart(); }
-
-function del(id){ tasks=tasks.filter(t=>t.id!==id); save();renderTasks();renderChart(); }
-
-/******** POMODORO ********/ function startTimer(){ timer=setInterval(()=>{ if(time<=0){clearInterval(timer);alert("Time up!");return;} time--; document.getElementById("timer").innerText= Math.floor(time/60)+":"+(time%60); },1000); }
-
-function resetTimer(){ clearInterval(timer); time=1500; document.getElementById("timer").innerText="25:00"; }
-
-/******** CHART ********/ function renderChart(){ let done=tasks.filter(t=>t.done).length; let pending=tasks.length-done;
-
-if(chartInstance) chartInstance.destroy();
-
-let ctx=document.getElementById("chart");
-
-chartInstance=new Chart(ctx,{ type:"doughnut", data:{ labels:["Done","Pending"], datasets:[{data:[done,pending]}] } }); }
-
-/******** CALENDAR ********/ function loadCalendar(){ let cal=document.getElementById("calendar"); let html="";
-
-for(let i=1;i<=30;i++){ html+=<div>${i}</div>; }
-
-cal.innerHTML=html; }
-
-/******** DARK MODE ********/ function toggleDark(){ document.body.classList.toggle("dark"); }
-
-renderTasks(); renderChart(); loadCalendar();
+<script src="../js/dashboard.js"></script>
+<script src="../js/planner.js"></script>
+</body>
+</html>

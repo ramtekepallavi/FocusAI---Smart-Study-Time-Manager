@@ -1,87 +1,190 @@
-// ================= COUNTER ANIMATION =================
-let user = 0, task = 0, hour = 0;
+/***********************
+ WELCOME POPUP
+************************/
+window.addEventListener("load", () => {
+  document.getElementById("welcomePopup").classList.remove("hidden");
+});
 
-let counter = setInterval(() => {
-  if(user < 500) user += 10;
-  if(task < 1200) task += 20;
-  if(hour < 800) hour += 15;
+function closePopup() {
+  document.getElementById("welcomePopup").classList.add("hidden");
+}
+/***********************
+ TYPING EFFECT
+************************/
+const text = "📚 Study smart, manage time & achieve success with AI!";
+let i = 0;
 
-  document.getElementById("users").innerText = user + "+";
-  document.getElementById("tasks").innerText = task + "+";
-  document.getElementById("hours").innerText = hour + "+";
-
-  if(user >= 500 && task >= 1200 && hour >= 800){
-    clearInterval(counter);
-  }
-}, 50);
-
-
-// ================= TYPING EFFECT =================
-let text = "Plan smarter. Study better. Achieve more.";
-let index = 0;
-
-function typingEffect() {
-  if(index < text.length){
-    document.getElementById("typing").innerHTML += text.charAt(index);
-    index++;
-    setTimeout(typingEffect, 50);
+function typing() {
+  if (i < text.length) {
+    document.getElementById("typing").innerHTML += text.charAt(i);
+    i++;
+    setTimeout(typing, 40);
   }
 }
-typingEffect();
+typing();
 
 
-// ================= DARK MODE =================
-let darkBtn = document.getElementById("darkModeBtn");
-
-darkBtn.onclick = () => {
-  document.body.classList.toggle("bg-black");
-  document.body.classList.toggle("text-white");
-
-  localStorage.setItem("theme", document.body.classList.contains("bg-black") ? "dark" : "light");
-};
-
-// Load saved theme
-if(localStorage.getItem("theme") === "dark"){
-  document.body.classList.add("bg-black", "text-white");
-}
-
-
-// ================= NAVBAR SCROLL EFFECT =================
+/***********************
+ SCROLL PROGRESS BAR
+************************/
 window.addEventListener("scroll", () => {
-  let header = document.querySelector("header");
+  let scrollTop = document.documentElement.scrollTop;
+  let height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+  let percent = (scrollTop / height) * 100;
 
-  if(window.scrollY > 50){
-    header.style.background = "#1e40af";
-  } else {
-    header.style.background = "rgba(37, 99, 235, 0.9)";
-  }
+  document.getElementById("progressBar").style.width = percent + "%";
 });
 
 
-// ================= SCROLL PROGRESS BAR =================
-window.onscroll = function() {
-  let winScroll = document.body.scrollTop || document.documentElement.scrollTop;
-  let height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-  let scrolled = (winScroll / height) * 100;
+/***********************
+ COUNTER ANIMATION
+************************/
+/***********************
+ COUNTER WITH SMOOTH ANIMATION + SCROLL TRIGGER
+************************/
 
-  document.getElementById("progressBar").style.width = scrolled + "%";
-};
+let counterStarted = false;
+
+function animateCounter(id, target) {
+  let el = document.getElementById(id);
+  let count = 0;
+  let duration = 2000; // total animation time
+  let stepTime = 20;
+  let steps = duration / stepTime;
+  let increment = target / steps;
+
+  let interval = setInterval(() => {
+    count += increment;
+
+    if (count >= target) {
+      count = target;
+      clearInterval(interval);
+    }
+
+    el.innerText = Math.floor(count);
+  }, stepTime);
+}
+
+/***********************
+ START ON SCROLL
+************************/
+function startCounters() {
+  if (counterStarted) return;
+
+  let section = document.getElementById("users");
+  let position = section.getBoundingClientRect().top;
+
+  if (position < window.innerHeight) {
+    counterStarted = true;
+
+    animateCounter("users", 500);
+    animateCounter("tasks", 1200);
+    animateCounter("hours", 300);
+  }
+}
+
+window.addEventListener("scroll", startCounters);
+window.addEventListener("load", startCounters);
 
 
-// ================= BUTTON CLICK EFFECT =================
-document.querySelectorAll("button").forEach(btn => {
-  btn.addEventListener("click", () => {
-    btn.style.transform = "scale(0.9)";
-    setTimeout(() => {
-      btn.style.transform = "scale(1)";
-    }, 150);
+/***********************
+ FAQ TOGGLE (SMOOTH)
+************************/
+function toggleFAQ(element) {
+  let content = element.nextElementSibling;
+
+  if (content.style.maxHeight) {
+    content.style.maxHeight = null;
+  } else {
+    content.style.maxHeight = content.scrollHeight + "px";
+  }
+}
+
+
+/***********************
+ SUBSCRIBE FUNCTION
+************************/
+function subscribe() {
+  let email = document.getElementById("email").value;
+
+  if (email === "") {
+    alert("❗ Please enter email");
+    return;
+  }
+
+  if (!email.includes("@") || !email.includes(".")) {
+    alert("❗ Invalid email");
+    return;
+  }
+
+  alert("🎉 Subscribed Successfully!");
+  document.getElementById("email").value = "";
+}
+
+
+/***********************
+ SCROLL ANIMATION
+************************/
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.style.opacity = 1;
+      entry.target.style.transform = "translateY(0)";
+    }
   });
 });
 
+document.querySelectorAll(".card, .why-card, .faq-box").forEach(el => {
+  el.style.opacity = 0;
+  el.style.transform = "translateY(30px)";
+  observer.observe(el);
+});
 
-// ================= WELCOME MESSAGE =================
-window.onload = () => {
-  setTimeout(() => {
-    alert("Welcome to SmartStudy AI 🚀");
-  }, 1000);
+
+/***********************
+ BACK TO TOP BUTTON
+************************/
+let btn = document.createElement("button");
+btn.innerHTML = "⬆";
+btn.style.position = "fixed";
+btn.style.bottom = "20px";
+btn.style.right = "20px";
+btn.style.padding = "10px";
+btn.style.borderRadius = "50%";
+btn.style.background = "#2563eb";
+btn.style.color = "white";
+btn.style.display = "none";
+
+document.body.appendChild(btn);
+
+window.addEventListener("scroll", () => {
+  if (window.scrollY > 300) {
+    btn.style.display = "block";
+  } else {
+    btn.style.display = "none";
+  }
+});
+
+btn.onclick = () => {
+  window.scrollTo({ top: 0, behavior: "smooth" });
 };
+
+
+/***********************
+ DYNAMIC YEAR
+************************/
+let footerText = document.querySelector("footer .text-center");
+let year = new Date().getFullYear();
+
+if (footerText) {
+  footerText.innerHTML = `© ${year} 📘 SmartStudy AI | Made with ❤️ for students`;
+}
+/***********************
+ MOBILE MENU TOGGLE
+************************/
+const menuBtn = document.getElementById("menuBtn");
+const navMenu = document.getElementById("navMenu");
+
+menuBtn.addEventListener("click", () => {
+  navMenu.classList.toggle("hidden");
+});

@@ -1,83 +1,165 @@
-// TASK SYSTEM
-let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
+/***********************
+ MOBILE MENU
+************************/
+document.getElementById("menuBtn").onclick = function () {
+  document.getElementById("navMenu").classList.toggle("hidden");
+};
 
-function displayTasks() {
-  let list = document.getElementById("taskList");
-  list.innerHTML = "";
+/***********************
+ COUNTER ANIMATION
+************************/
+function animate(id, target, suffix = "") {
+  let count = 0;
+  let el = document.getElementById(id);
 
-  tasks.forEach((task, i) => {
-    list.innerHTML += `
-      <li>${task}
-      <button onclick="deleteTask(${i})">❌</button>
-      </li>
-    `;
-  });
+  let interval = setInterval(() => {
+    count += Math.ceil(target / 60);
 
-  document.getElementById("taskCount").innerText = tasks.length;
+    if (count >= target) {
+      count = target;
+      clearInterval(interval);
+    }
+
+    el.innerText = count + suffix;
+  }, 30);
 }
+
+/***********************
+ PROGRESS BARS
+************************/
+function progressBars() {
+  setTimeout(() => {
+    document.getElementById("mathBar").style.width = "75%";
+    document.getElementById("codeBar").style.width = "85%";
+    document.getElementById("sciBar").style.width = "65%";
+  }, 300);
+}
+
+/***********************
+ TASK SYSTEM
+************************/
+let tasks = [];
 
 function addTask() {
   let input = document.getElementById("taskInput");
+  let value = input.value.trim();
 
-  if(input.value === "") return;
+  if (value === "") return;
 
-  tasks.push(input.value);
-  localStorage.setItem("tasks", JSON.stringify(tasks));
-
+  tasks.push(value);
   input.value = "";
-  displayTasks();
+  renderList(tasks, "taskList");
 }
 
-function deleteTask(i) {
-  tasks.splice(i,1);
-  localStorage.setItem("tasks", JSON.stringify(tasks));
-  displayTasks();
+function deleteTask(index) {
+  tasks.splice(index, 1);
+  renderList(tasks, "taskList");
 }
 
+/***********************
+ GOAL SYSTEM
+************************/
+let goals = [];
 
-// TIMER
-let time = 1500;
-let interval;
+function addGoal() {
+  let input = document.getElementById("goalInput");
+  let value = input.value.trim();
 
-function startTimer() {
-  if(interval) return;
+  if (value === "") return;
 
-  interval = setInterval(() => {
-    time--;
+  goals.push(value);
+  input.value = "";
+  renderList(goals, "goalList");
+}
 
-    let min = Math.floor(time / 60);
-    let sec = time % 60;
+function deleteGoal(index) {
+  goals.splice(index, 1);
+  renderList(goals, "goalList");
+}
 
-    document.getElementById("timer").innerText =
-      `${min}:${sec < 10 ? "0" : ""}${sec}`;
+/***********************
+ RENDER FUNCTION
+************************/
+function renderList(arr, id) {
+  let list = document.getElementById(id);
+  list.innerHTML = "";
 
-    document.getElementById("studyTime").innerText =
-      Math.floor((1500 - time)/60) + " min";
+  arr.forEach((item, index) => {
+    let li = document.createElement("li");
 
-    if(time <= 0){
-      clearInterval(interval);
-      alert("Time's up ⏰");
+    li.innerHTML = `
+      ${item}
+      <button onclick="${
+        id === "taskList" ? "deleteTask" : "deleteGoal"
+      }(${index})">❌</button>
+    `;
+
+    li.classList.add("fade-in");
+    list.appendChild(li);
+  });
+}
+
+/***********************
+ CHARTS
+************************/
+function loadCharts() {
+  new Chart(document.getElementById("lineChart"), {
+    type: "line",
+    data: {
+      labels: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
+      datasets: [{
+        label: "Study Hours",
+        data: [2, 3, 4, 2, 5, 3, 6],
+        fill: true,
+        tension: 0.4
+      }]
     }
+  });
 
-  }, 1000);
+  new Chart(document.getElementById("pieChart"), {
+    type: "pie",
+    data: {
+      labels: ["Math", "Coding", "Science"],
+      datasets: [{
+        data: [30, 40, 30]
+      }]
+    }
+  });
+}
+function subscribe() {
+  let email = document.getElementById("email").value;
+
+  if (email === "") {
+    alert("❗ Please enter email");
+    return;
+  }
+
+  if (!email.includes("@") || !email.includes(".")) {
+    alert("❗ Invalid email");
+    return;
+  }
+
+  alert("🎉 Subscribed Successfully!");
+  document.getElementById("email").value = "";
 }
 
-function resetTimer() {
-  clearInterval(interval);
-  interval = null;
-  time = 1500;
-  document.getElementById("timer").innerText = "25:00";
+/* Dynamic Year */
+let footerText = document.getElementById("footer .text-center");
+
+if (footerText) {
+  let year = new Date().getFullYear();
+  footerText.innerHTML = `© ${year} 📘 SmartStudy AI | Made with ❤️ for students`;
 }
 
+/***********************
+ INIT
+************************/
+window.onload = () => {
+  animate("time", 12, " hrs");
+  animate("taskCount", 25);
+  animate("focus", 85, "%");
+  animate("streak", 7, "🔥");
 
-// PROGRESS
-function updateProgress() {
-  let progress = tasks.length * 10;
-  document.getElementById("progressBar").style.width = progress + "%";
-}
-
-setInterval(updateProgress, 2000);
-
-
-// INIT
-displayTasks();
+  progressBars();
+  loadCharts();
+};

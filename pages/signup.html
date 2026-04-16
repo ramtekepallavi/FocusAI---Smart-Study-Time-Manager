@@ -1,28 +1,65 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<title>Signup</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>SmartStudy AI - Signup</title>
+
 <script src="https://cdn.tailwindcss.com"></script>
+<link rel="stylesheet" href="./../css/signup.css">
 </head>
 
-<body class="bg-gray-100 flex justify-center items-center h-screen">
+<body>
 
-<div class="bg-white p-6 rounded shadow w-80">
+<!-- ================= HEADER ================= -->
+<header class="header">
 
-  <h2 class="text-xl font-bold mb-4 text-center">Signup</h2>
+  <div class="header-inner">
 
-  <input id="name" placeholder="Name" class="border p-2 w-full mb-2">
-  <input id="email" placeholder="Email" class="border p-2 w-full mb-2">
-  <input id="password" type="password" placeholder="Password" class="border p-2 w-full mb-2">
+    <h1>📘 SmartStudy AI</h1>
 
-  <button onclick="signup()" class="bg-blue-600 text-white w-full py-2 rounded">
-    Signup
-  </button>
+    <div class="nav-actions">
+      <a href="./../index.html" class="back-btn">⬅ Home</a>
+      <a href="./login.html" class="login-link">Login</a>
+    </div>
 
-  <p id="msg" class="text-green-600 mt-2"></p>
+  </div>
+
+</header>
+
+<!-- ================= SIGNUP BOX ================= -->
+<div class="signup-wrapper">
+
+  <div class="signup-card">
+
+    <div class="logo">📘 Create Account</div>
+    <p class="title">Join SmartStudy AI 🚀</p>
+
+    <input id="name" type="text" placeholder="Full Name">
+    <input id="email" type="email" placeholder="Email">
+
+    <input id="password" type="password" placeholder="Password">
+    <input id="confirmPassword" type="password" placeholder="Confirm Password">
+
+    <!-- TERMS -->
+    <label class="terms">
+      <input type="checkbox" id="terms">
+      I agree to Terms & Conditions
+    </label>
+
+    <button class="signup-btn" onclick="signup()">Signup</button>
+
+    <p class="bottom-text">
+      Already have an account?
+      <a href="./login.html">Login here</a>
+    </p>
+
+  </div>
 
 </div>
 
-<script src="../js/signup.js"></script>
+<script src="./../js/signup.js"></script>
+
 </body>
 </html>

@@ -1,39 +1,243 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<title>Progress</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Progress - SmartStudy AI</title>
+
+<!-- Favicon -->
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='0.9em' font-size='90'%3E📘%3C/text%3E%3C/svg%3E">
+
+<!-- Tailwind -->
 <script src="https://cdn.tailwindcss.com"></script>
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<!-- CSS -->
+<link rel="stylesheet" href="../css/progress.css">
+
+<!-- Font -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
 </head>
 
-<body class="bg-gray-100">
+<body class="bg-gray-100 font-[Poppins]">
 
-<!-- Header -->
-<header class="bg-blue-600 text-white p-4 flex justify-between">
-  <h1>Progress</h1>
-  <a href="dashboard.html">Back</a>
+<!-- ================= HEADER (SAME AS HOME) ================= -->
+<header class="fixed w-full top-0 z-50 text-white p-5 shadow-lg bg-blue-700">
+  <div class="flex justify-between items-center max-w-7xl mx-auto">
+
+    <h1 class="text-2xl font-bold">📘 SmartStudy AI</h1>
+
+    <button id="menuBtn" class="md:hidden text-2xl">☰</button>
+
+    <nav id="navMenu"
+      class="hidden md:flex space-x-4 text-lg flex-col md:flex-row absolute md:static bg-blue-700 w-full left-0 top-16 md:w-auto p-5 md:p-0">
+
+      <a href="../index.html">Home</a>
+      <a href="dashboard.html">Dashboard</a>
+      <a href="planner.html">Planner</a>
+      <a href="progress.html" class="text-yellow-300">Progress</a>
+      <a href="chatbot.html">AI Chat</a>
+      <a href="courses.html">Courses</a>
+      <a href="contact.html">Contact</a>
+
+      <a href="login.html" class="bg-white text-blue-700 px-3 py-1 rounded">
+        🔐 Login
+      </a>
+       <a href="signup.html" class="bg-white text-blue-700 px-3 py-1 rounded">
+        Signup
+      </a>
+
+    </nav>
+  </div>
 </header>
 
-<div class="flex">
+<!-- ================= TITLE ================= -->
+<section class="pt-28 text-center px-4">
+  <h2 class="text-4xl md:text-5xl font-bold mb-3">📈 Your Learning Progress</h2>
+  <p class="text-gray-600">Visualize your growth & stay motivated 🚀</p>
+</section>
 
-<!-- Sidebar -->
-<div class="w-64 bg-blue-900 text-white h-screen p-4">
-  <a href="dashboard.html" class="block py-2">Dashboard</a>
-  <a href="planner.html" class="block py-2">Planner</a>
-  <a href="progress.html" class="block py-2">Progress</a>
-  <a href="chatbot.html" class="block py-2">Chatbot</a>
-</div>
+<!-- ================= PROGRESS CARDS ================= -->
+<section class="max-w-6xl mx-auto p-6 md:p-10 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 text-center">
 
-<!-- Content -->
-<div class="p-6 w-full">
+  <div class="progress-card">
+    <h3>📐 Math</h3>
+    <div class="progress-circle" id="mathCircle">0%</div>
+  </div>
 
-  <h2 class="text-2xl font-bold mb-4">Your Study Progress</h2>
+  <div class="progress-card">
+    <h3>💻 Coding</h3>
+    <div class="progress-circle" id="codeCircle">0%</div>
+  </div>
 
-  <canvas id="myChart" height="100"></canvas>
+  <div class="progress-card">
+    <h3>🔬 Science</h3>
+    <div class="progress-circle" id="scienceCircle">0%</div>
+  </div>
 
-</div>
+</section>
 
-</div>
+<!-- ================= PROGRESS BARS ================= -->
+<section class="max-w-4xl mx-auto p-6">
+  <h2 class="text-2xl font-bold mb-6 text-center">📊 Subject Performance</h2>
+
+  <div class="bar-box">
+    <p>Math</p>
+    <div class="bar"><div id="bar1"></div></div>
+  </div>
+
+  <div class="bar-box">
+    <p>Coding</p>
+    <div class="bar"><div id="bar2"></div></div>
+  </div>
+
+  <div class="bar-box">
+    <p>Science</p>
+    <div class="bar"><div id="bar3"></div></div>
+  </div>
+</section>
+
+<!-- ================= WEEKLY PROGRESS ================= -->
+<section class="weekly-progress">
+
+  <h2>🔥 Weekly Progress Tracker</h2>
+  <p>Track what you completed this week 📅</p>
+
+  <div class="week-grid">
+
+    <div class="day-box">
+      <h3>Monday</h3>
+      <div class="progress-line"><div id="mon"></div></div>
+      <span>Study 3 Hours 📘</span>
+    </div>
+
+    <div class="day-box">
+      <h3>Tuesday</h3>
+      <div class="progress-line"><div id="tue"></div></div>
+      <span>Math Practice ➗</span>
+    </div>
+
+    <div class="day-box">
+      <h3>Wednesday</h3>
+      <div class="progress-line"><div id="wed"></div></div>
+      <span>Science Quiz 🧪</span>
+    </div>
+
+    <div class="day-box">
+      <h3>Thursday</h3>
+      <div class="progress-line"><div id="thu"></div></div>
+      <span>Coding Practice 💻</span>
+    </div>
+
+    <div class="day-box">
+      <h3>Friday</h3>
+      <div class="progress-line"><div id="fri"></div></div>
+      <span>Revision 📚</span>
+    </div>
+
+    <div class="day-box">
+      <h3>Saturday</h3>
+      <div class="progress-line"><div id="sat"></div></div>
+      <span>Test Practice 📝</span>
+    </div>
+
+    <div class="day-box">
+      <h3>Sunday</h3>
+      <div class="progress-line"><div id="sun"></div></div>
+      <span>Rest + Review 😌</span>
+    </div>
+
+  </div>
+
+</section>
+
+<!-- ================= GOALS ================= -->
+<section class="max-w-5xl mx-auto p-10">
+  <h2 class="text-2xl font-bold mb-6 text-center">🎯 Goals Progress</h2>
+
+  <ul id="goalList" class="space-y-3">
+    <li>Complete 5 Chapters <span>✔</span></li>
+    <li>Study 2 Hours Daily <span>✔</span></li>
+    <li>Finish Assignments <span>❌</span></li>
+  </ul>
+</section>
+
+<!-- ================= MOTIVATION ================= -->
+<section class="text-center p-10">
+  <h2 class="text-2xl font-bold mb-4">💡 Motivation</h2>
+  <p id="quote" class="italic text-gray-700">Keep going 🚀</p>
+</section>
+ <!-- ================= FOOTER ================= -->
+  <footer class="bg-gray-900 text-white py-10">
+
+    <div class="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 px-5">
+
+      <!-- ABOUT -->
+      <div>
+        <h3 class="font-bold text-lg mb-3">📘 SmartStudy AI</h3>
+        <p class="text-gray-400">
+          🎯 Smart study partner <br>
+          🤖 AI powered tools <br>
+          🚀 Boost productivity <br>
+          📚 Learn smarter every day
+        </p>
+      </div>
+
+      <!-- QUICK LINKS -->
+      <div>
+        <h3 class="font-bold mb-3">🔗 Quick Links</h3>
+        <ul class="text-gray-400 space-y-2">
+          <li><a href="../index.html">🏠 Home</a></li>
+          <li><a href="pages/dashboard.html">📊 Dashboard</a></li>
+          <li><a href="pages/planner.html">📅 Planner</a></li>
+          <li><a href="pages/progress.html">📈 Progress</a></li>
+          <li><a href="pages/chatbot.html">🤖 AI Chat</a></li>
+        </ul>
+      </div>
+
+      <!-- CONTACT -->
+      <div>
+        <h3 class="font-bold mb-3">📞 Contact</h3>
+        <p class="text-gray-400">
+          📧 <a href="mailto:support@smartstudy.ai">support@smartstudy.ai</a> <br>
+          📍 India <br>
+          ☎️ <a href="tel:+919876543210">+91 98765 43210</a>
+        </p>
+
+        <!-- SOCIAL -->
+        <div class="flex gap-3 mt-4">
+          <a href="#" class="bg-blue-600 px-3 py-2 rounded">📘</a>
+          <a href="#" class="bg-pink-500 px-3 py-2 rounded">📸</a>
+          <a href="#" class="bg-blue-400 px-3 py-2 rounded">🐦</a>
+          <a href="#" class="bg-red-600 px-3 py-2 rounded">▶</a>
+        </div>
+      </div>
+
+      <!-- SUBSCRIBE -->
+      <div>
+        <h3 class="font-bold mb-3">📩 Subscribe</h3>
+
+        <input id="email" type="email" class="w-full p-2 rounded text-black" placeholder="Enter your email">
+
+        <button onclick="subscribe()" class="mt-2 bg-yellow-400 text-black px-4 py-2 rounded w-full">
+          Subscribe 🚀
+        </button>
+
+        <p class="text-gray-400 text-sm mt-3">
+          Get study tips & updates 📚
+        </p>
+      </div>
+
+    </div>
+    
+    <!-- EXTRA LINKS -->
+    <div class="max-w-7xl mx-auto mt-8 border-t border-gray-700 pt-6 text-center">
+
+  
+    </div>
+    <p id="footerText" ckass="text-grey-500 mt-6 text-center">📘 SmartStudy AI | Made with ❤️ for students</p>
+
+  </footer>
 
 <script src="../js/progress.js"></script>
 </body>

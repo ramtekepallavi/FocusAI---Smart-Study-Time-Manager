@@ -1,11 +1,32 @@
-function signup() {
+/* SIGNUP FUNCTION */
+function signup(){
+
   let name = document.getElementById("name").value;
   let email = document.getElementById("email").value;
-  let pass = document.getElementById("password").value;
+  let password = document.getElementById("password").value;
+  let confirmPassword = document.getElementById("confirmPassword").value;
+  let terms = document.getElementById("terms").checked;
 
-  let user = {name, email, password: pass};
+  if(name === "" || email === "" || password === "" || confirmPassword === ""){
+    alert("⚠ Please fill all fields");
+    return;
+  }
 
-  localStorage.setItem("user", JSON.stringify(user));
+  if(password.length < 4){
+    alert("⚠ Password must be at least 4 characters");
+    return;
+  }
 
-  document.getElementById("msg").innerText = "Signup successful 👍";
+  if(password !== confirmPassword){
+    alert("❌ Passwords do not match");
+    return;
+  }
+
+  if(!terms){
+    alert("⚠ Please accept Terms & Conditions");
+    return;
+  }
+
+  alert("🎉 Signup Successful!");
+  window.location.href = "./login.html";
 }

@@ -8,11 +8,28 @@ body {
 header {
   backdrop-filter: blur(10px);
   background: rgba(37, 99, 235, 0.9);
-  transition: 0.3s;
+  transition: 0.4s;
 }
 
 header a {
   transition: 0.3s;
+  position: relative;
+}
+
+/* underline hover effect */
+header a::after {
+  content: "";
+  position: absolute;
+  width: 0%;
+  height: 2px;
+  bottom: -3px;
+  left: 0;
+  background: #facc15;
+  transition: 0.3s;
+}
+
+header a:hover::after {
+  width: 100%;
 }
 
 header a:hover {
@@ -25,38 +42,205 @@ header a:hover {
   animation: fadeIn 1.5s ease-in-out;
 }
 
+/* floating animation */
+.hero h2 {
+  animation: float 3s ease-in-out infinite;
+}
+
 /* ================= CARDS ================= */
 .card {
   transition: 0.4s;
   border-radius: 15px;
+  position: relative;
+  overflow: hidden;
+}
+
+/* gradient hover glow */
+.card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(120deg, transparent, rgba(255,255,255,0.4), transparent);
+  opacity: 0;
+  transition: 0.5s;
+}
+
+.card:hover::before {
+  opacity: 1;
 }
 
 .card:hover {
-  transform: translateY(-10px) scale(1.05);
-  box-shadow: 0px 15px 30px rgba(0,0,0,0.2);
+  transform: translateY(-10px) scale(1.05) rotate(1deg);
+  box-shadow: 0px 15px 30px rgba(0,0,0,0.25);
 }
 
 /* ================= BUTTON ================= */
 button {
   transition: 0.3s;
+  position: relative;
+  overflow: hidden;
+}
+
+/* ripple effect */
+button::after {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 0;
+  background: rgba(255,255,255,0.4);
+  border-radius: 50%;
+  transition: 0.5s;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+button:hover::after {
+  width: 200%;
+  height: 500%;
 }
 
 button:hover {
-  transform: scale(1.05);
+  transform: scale(1.08);
+}
+/* ================= STATS ADVANCED HOVER ================= */
+.stats-box {
+  background: transparent;
+  padding: 20px;
+  border-radius: 12px;
+  transition: 0.4s;
+  cursor: pointer;
+  position: relative;
 }
 
-/* ================= STATS ================= */
-.stats-box {
+/* hover main effect */
+.stats-box:hover {
+  transform: translateY(-10px) scale(1.1);
+  background: rgba(255,255,255,0.1);
+}
+
+/* number glow */
+.stats-box h2 {
   transition: 0.4s;
 }
 
-.stats-box:hover {
+.stats-box:hover h2 {
+  color: #facc15;
+  text-shadow: 0 0 15px #facc15;
+}
+
+/* icon/text animation */
+.stats-box p {
+  transition: 0.3s;
+}
+
+.stats-box:hover p {
   transform: scale(1.1);
 }
 
+/* animated border */
+.stats-box::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 12px;
+  border: 2px solid transparent;
+  transition: 0.4s;
+}
+
+.stats-box:hover::after {
+  border-color: #facc15;
+}
+
+/* ================= WHY SECTION ================= */
+.why-card {
+  background: white;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+  transition: 0.4s;
+  position: relative;
+}
+
+/* border animation */
+.why-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 12px;
+  border: 2px solid transparent;
+  transition: 0.4s;
+}
+
+.why-card:hover::after {
+  border-color: #6366f1;
+}
+
+.why-card:hover {
+  transform: translateY(-8px) scale(1.05);
+  background: #f9fafb;
+}
+/* STATS HOVER EFFECT */
+.stats-box {
+  transition: 0.4s;
+  cursor: pointer;
+}
+
+.stats-box:hover {
+  transform: scale(1.15) translateY(-5px);
+  color: #facc15;
+}
+
+/* number animation glow */
+.stats-box h2 {
+  transition: 0.3s;
+}
+
+.stats-box:hover h2 {
+  text-shadow: 0 0 10px #facc15;
+}
+/* ================= FAQ ================= */
+.faq-box {
+  background: #f3f4f6;
+  padding: 15px;
+  margin-bottom: 10px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.faq-box:hover {
+  background: #e0e7ff;
+  transform: scale(1.02);
+}
+
+.faq-box h3 {
+  font-weight: bold;
+}
+
+.faq-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease;
+  margin-top: 10px;
+  color: #555;
+  animation: fadeIn 0.4s ease-in-out;
+}
+
 /* ================= FOOTER ================= */
+footer a {
+  transition: 0.3s;
+  display: inline-block;
+}
+
 footer a:hover {
   color: #facc15;
+  transform: translateX(5px);
+}
+
+/* social icon hover */
+footer .flex a:hover {
+  transform: scale(1.2) rotate(5deg);
 }
 
 /* ================= ANIMATIONS ================= */
@@ -69,4 +253,40 @@ footer a:hover {
     opacity: 1;
     transform: translateY(0);
   }
+}
+
+/* floating animation */
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0px); }
+}
+
+/* ================= RESPONSIVE ================= */
+@media (max-width: 768px) {
+
+  header {
+    padding: 15px;
+  }
+
+  header nav {
+    font-size: 14px;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .hero {
+    padding: 80px 10px;
+    text-align: center;
+  }
+
+  .hero h2 {
+    font-size: 28px;
+    line-height: 1.3;
+  }
+
+  .hero p {
+    font-size: 14px;
+  }
+
 }

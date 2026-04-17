@@ -1,0 +1,207 @@
+<<<<<<< HEAD
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Planner-Smart study AI</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="stylesheet" href="../css/planner.css">
+<link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+</head>
+
+<body class="bg-gray-100">
+
+<!-- HEADER -->
+<header class="fixed w-full top-0 z-50 text-white p-5 shadow-lg bg-blue-600">
+  <div class="flex justify-between items-center max-w-7xl mx-auto">
+    
+    <h1 class="text-2xl font-bold">📅 SmartStudy Planner</h1>
+
+    <nav class="space-x-4 text-lg flex items-center flex-wrap">
+      <a href="../index.html">🏠 Home</a>
+      <a href="dashboard.html">📊 Dashboard</a>
+      <a href="planner.html">📅 Planner</a>
+      <a href="progress.html">📈 Progress</a>
+      <a href="chatbot.html">🤖 AI Chat</a>
+    </nav>
+  </div>
+</header><!-- ================= HERO ================= -->
+<section class="pt-28 text-center py-16 bg-blue-600 text-white">
+  <h2 class="text-4xl font-bold mb-4">Plan Your Study Smartly 📅</h2>
+  <p class="text-lg mb-4">Organize your tasks and manage your time effectively</p>
+  
+  <p class="text-sm text-gray-200">Stay consistent, track progress & achieve your goals 🚀</p>
+</section>
+
+<section class="max-w-5xl mx-auto p-10">
+  <div class="bg-white p-6 shadow-lg rounded-lg">
+
+    <input id="searchInput" type="text" placeholder="🔍 Search tasks..."
+      class="p-3 border rounded w-full mb-4">
+
+    <div class="flex gap-3 mb-6 justify-center flex-wrap">
+      <button class="filter-btn bg-gray-500 text-white px-4 py-1 rounded" data-filter="all">All</button>
+      <button class="filter-btn bg-red-500 text-white px-4 py-1 rounded" data-filter="High">High</button>
+      <button class="filter-btn bg-yellow-500 text-white px-4 py-1 rounded" data-filter="Medium">Medium</button>
+      <button class="filter-btn bg-green-500 text-white px-4 py-1 rounded" data-filter="Low">Low</button>
+    </div>
+
+    <div class="bg-white p-4 rounded shadow mb-6 text-center">
+      <h3 class="font-bold text-lg">📊 Progress</h3>
+      <p id="progressText">0 / 0 Tasks Completed</p>
+      <div class="w-full bg-gray-200 rounded h-3 mt-2">
+        <div id="progressBar" class="bg-green-500 h-3 rounded w-0"></div>
+      </div>
+    </div>
+
+    <div class="grid grid-cols-3 gap-4 text-center mb-6">
+      <div class="bg-gray-100 p-3 rounded">
+        <p class="text-sm text-gray-500">Total</p>
+        <p id="totalTasks" class="font-bold text-lg">0</p>
+      </div>
+      <div class="bg-gray-100 p-3 rounded">
+        <p class="text-sm text-gray-500">Completed</p>
+        <p id="completedTasks" class="font-bold text-lg">0</p>
+      </div>
+      <div class="bg-gray-100 p-3 rounded">
+        <p class="text-sm text-gray-500">Pending</p>
+        <p id="pendingTasks" class="font-bold text-lg">0</p>
+      </div>
+    </div>
+
+    <h3 class="text-2xl font-bold mb-4">➕ Add New Task</h3>
+    <form id="taskForm" class="grid grid-cols-1 md:grid-cols-3 gap-4">
+      
+      <input id="taskTitle" type="text" placeholder="Task Title"
+        class="p-3 border rounded">
+
+      <input id="taskDate" type="date"
+        class="p-3 border rounded">
+
+      <select id="taskPriority" class="p-3 border rounded">
+        <option>Priority</option>
+        <option>High</option>
+        <option>Medium</option>
+        <option>Low</option>
+      </select>
+
+      <input type="time" class="p-3 border rounded md:col-span-3">
+
+      <textarea id="taskDesc" placeholder="Task Description"
+        class="p-3 border rounded md:col-span-3"></textarea>
+
+      <textarea placeholder="Extra Notes (optional)"
+        class="p-3 border rounded md:col-span-3"></textarea>
+
+      <button type="submit"
+        class="bg-yellow-400 text-black px-6 py-2 rounded font-bold md:col-span-3 hover:bg-yellow-500">
+        Add Task ➕
+      </button>
+    </form>
+
+  </div>
+</section>
+<section class="max-w-6xl mx-auto p-10">
+
+  <h3 class="text-2xl font-bold mb-4 text-center">📋 Your Tasks</h3>
+
+  <div class="flex justify-between items-center mb-6 flex-wrap gap-3">
+    
+    <p class="text-gray-600 text-sm">
+      Total Tasks: <span id="taskCount" class="font-bold">0</span>
+    </p>
+
+    <button onclick="clearAllTasks()"
+      class="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600 text-sm">
+      Clear All ❌
+    </button>
+  </div>
+
+  <div id="taskList" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+    <div class="bg-white p-5 shadow-lg rounded-lg">
+      <h4 class="text-xl font-bold">📘Study JavaScript</h4>
+      <p class="text-gray-500">Deadline: 2026-04-15</p>
+      <p class="mt-2">Complete arrays and objects topics</p>
+
+      <div class="mt-4 flex justify-between items-center">
+        
+        <span class="bg-red-500 text-white px-2 py-1 rounded text-sm">High</span>
+
+        <div class="flex gap-2">
+          <button class="bg-green-500 text-white px-2 py-1 rounded text-sm">
+            ✓
+          </button>
+          <button class="bg-red-500 text-white px-2 py-1 rounded text-sm">
+            ✕
+          </button>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+
+  <div id="emptyState" class="text-center text-gray-500 mt-10 hidden">
+    <p class="text-lg">📭 No tasks added yet</p>
+    <p class="text-sm">Start by adding a new task above 👆</p>
+  </div>
+
+</section>
+     
+<!-- FOOTER -->
+<footer class="bg-gray-900 text-white py-10 mt-10">
+
+  <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-8">
+
+    <div>
+      <h3 class="font-bold text-lg mb-3">📘 SmartStudy AI</h3>
+      <p class="text-gray-400">
+        🎯 Your smart study partner <br>
+        🤖 Powered by AI tools <br>
+        🚀 Boost your productivity
+      </p>
+    </div>
+
+    <div>
+      <h3 class="font-bold mb-3">🔗 Quick Links</h3>
+      <ul class="text-gray-400 space-y-2">
+        <li>🏠 <a href="dashboard.html">Dashboard</a></li>
+        <li>📅 <a href="planner.html">Planner</a></li>
+        <li>📊 <a href="progress.html">Progress</a></li>
+        <li>🤖 <a href="chatbot.html">AI Chat</a></li>
+      </ul>
+    </div>
+
+    <div>
+      <h3 class="font-bold mb-3">📚 Courses</h3>
+      <ul class="text-gray-400 space-y-2">
+        <li>💻 Programming</li>
+        <li>🧠 AI Basics</li>
+        <li>⏳ Time Management</li>
+      </ul>
+    </div>
+
+    <div>
+      <h3 class="font-bold mb-3">📞 Contact</h3>
+      <p class="text-gray-400">
+        📧 support@smartstudy.ai <br>
+        📍 India <br>
+        ☎️ +91 98765 43210
+      </p>
+    </div>
+
+  </div>
+
+  <div class="text-center text-gray-500 mt-8 border-t border-gray-700 pt-4">
+    © 2026 📘 SmartStudy AI | Made with ❤️ for students
+  </div>
+
+</footer>
+
+<script src="../js/dashboard.js"></script>
+<script src="../js/planner.js"></script>
+</body>
+</html>
+=======
+>>>>>>> 45a6f09411e4d6809a15dd4291fd88cbbea8f4d1

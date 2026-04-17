@@ -1,20 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>SmartStudy AI - Signup</title>
+  <title>Signup - SmartStudy AI</title>
 
-<script src="https://cdn.tailwindcss.com"></script>
-<link rel="stylesheet" href="./../css/signup.css">
+  <link rel="icon"
+    href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='0.9em' font-size='90'%3E📘%3C/text%3E%3C/svg%3E">
+
+  <!-- ❌ REMOVE Tailwind (conflict fix) -->
+  <!-- <script src="https://cdn.tailwindcss.com"></script> -->
+
+  <link rel="stylesheet" href="../css/signup.css">
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
 </head>
 
 <body>
 
 <!-- ================= HEADER ================= -->
 <header class="header">
-
   <div class="header-inner">
 
     <h1>📘 SmartStudy AI</h1>
@@ -25,10 +34,9 @@
     </div>
 
   </div>
-
 </header>
 
-<!-- ================= SIGNUP BOX ================= -->
+<!-- ================= SIGNUP ================= -->
 <div class="signup-wrapper">
 
   <div class="signup-card">
@@ -36,30 +44,27 @@
     <div class="logo">📘 Create Account</div>
     <p class="title">Join SmartStudy AI 🚀</p>
 
-    <input id="name" type="text" placeholder="Full Name">
-    <input id="email" type="email" placeholder="Email">
+    <input type="text" placeholder="Full Name">
+    <input type="email" placeholder="Email">
 
-    <input id="password" type="password" placeholder="Password">
-    <input id="confirmPassword" type="password" placeholder="Confirm Password">
+    <input type="password" placeholder="Password">
+    <input type="password" placeholder="Confirm Password">
 
-    <!-- TERMS -->
     <label class="terms">
-      <input type="checkbox" id="terms">
+      <input type="checkbox">
       I agree to Terms & Conditions
     </label>
 
-    <button class="signup-btn" onclick="signup()">Signup</button>
+    <button class="signup-btn">Signup</button>
 
     <p class="bottom-text">
       Already have an account?
-      <a href="./login.html">Login here</a>
+      <a href="#">Login here</a>
     </p>
 
   </div>
 
 </div>
-
-<script src="./../js/signup.js"></script>
 
 </body>
 </html>

@@ -91,7 +91,10 @@ window.addEventListener("load", startCounters);
  FAQ TOGGLE (SMOOTH)
 ************************/
 function toggleFAQ(element) {
+  let box = element.parentElement;
   let content = element.nextElementSibling;
+
+  box.classList.toggle("active");
 
   if (content.style.maxHeight) {
     content.style.maxHeight = null;

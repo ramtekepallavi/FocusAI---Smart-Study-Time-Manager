@@ -1,83 +1,60 @@
-// Course Data
-let courses = [
-  {name: "Mathematics", category: "Academic", desc: "Algebra, Geometry basics"},
-  {name: "Science", category: "Academic", desc: "Physics and Chemistry concepts"},
-  {name: "Programming", category: "Technical", desc: "HTML, CSS, JavaScript"},
-  {name: "Time Management", category: "Skill", desc: "Improve productivity"},
-  {name: "AI Basics", category: "Technical", desc: "Introduction to AI"},
-  {name: "Communication Skills", category: "Skill", desc: "Improve speaking skills"}
-];
-
-// Display Courses
-function displayCourses(data) {
-  let container = document.getElementById("courseList");
-  container.innerHTML = "";
-
-  if(data.length === 0){
-    container.innerHTML = "<p>No courses found</p>";
-    return;
-  }
-
-  data.forEach((course, index) => {
-    container.innerHTML += `
-      <div class="bg-white p-4 shadow rounded hover:shadow-lg transition">
-        <h3 class="font-bold text-lg">${course.name}</h3>
-        <p class="text-gray-600 mt-1">${course.desc}</p>
-        <span class="text-sm text-blue-600">${course.category}</span>
-
-        <div class="mt-3 flex justify-between items-center">
-          <button onclick="enrollCourse(${index})"
-            class="bg-green-500 text-white px-3 py-1 rounded">
-            Enroll
-          </button>
-
-          <button onclick="viewCourse('${course.name}')"
-            class="bg-blue-500 text-white px-3 py-1 rounded">
-            View
-          </button>
-        </div>
-      </div>
-    `;
-  });
+function enrollCourse(btn) {
+  btn.innerText = "Enrolled ✅";
+  btn.classList.remove("bg-yellow-400");
+  btn.classList.add("bg-green-500", "text-white");
 }
 
-// Search
+function deleteCourse(btn) {
+  const card = btn.closest(".course-card");
+  card.remove();
+}
+// ================= COURSE SEARCH =================
 function searchCourse() {
-  let search = document.getElementById("search").value.toLowerCase();
+  let input = document.getElementById("searchInput").value.toLowerCase();
+  let courses = document.querySelectorAll(".course-card");
+  let found = false;
 
-  let filtered = courses.filter(c =>
-    c.name.toLowerCase().includes(search)
-  );
+  courses.forEach(card => {
+    let title = card.querySelector("h4").innerText.toLowerCase();
 
-  displayCourses(filtered);
+    if (title.includes(input)) {
+      card.style.display = "block";
+      found = true;
+    } else {
+      card.style.display = "none";
+    }
+  });
+
+  // NO RESULT MESSAGE
+  let noResult = document.getElementById("noResult");
+
+  if (found) {
+    noResult.style.display = "none";
+  } else {
+    noResult.style.display = "block";
+  }
 }
+function subscribe() {
+  let email = document.getElementById("email").value;
 
-// Filter
-function filterCategory(category) {
-  if(category === "All"){
-    displayCourses(courses);
+  if (email === "") {
+    alert("❗ Please enter email");
     return;
   }
 
-  let filtered = courses.filter(c => c.category === category);
-  displayCourses(filtered);
+  if (!email.includes("@") || !email.includes(".")) {
+    alert("❗ Invalid email");
+    return;
+  }
+
+  alert("🎉 Subscribed Successfully!");
+  document.getElementById("email").value = "";
 }
 
-// Enroll
-function enrollCourse(index) {
-  let enrolled = JSON.parse(localStorage.getItem("enrolled")) || [];
+/* Dynamic Year */
+let footerText = document.getElementById("footer .text-center");
 
-  enrolled.push(courses[index]);
-
-  localStorage.setItem("enrolled", JSON.stringify(enrolled));
-
-  alert("Enrolled Successfully 👍");
+if (footerText) {
+  let year = new Date().getFullYear();
+  footerText.innerHTML = `© ${year} 📘 SmartStudy AI | Made with ❤️ for students`;
 }
-
-// View Course Details
-function viewCourse(name) {
-  alert("Opening " + name + " course 📚");
-}
-
-// Load on start
-displayCourses(courses);

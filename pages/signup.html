@@ -1,28 +1,68 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
-<title>Signup</title>
-<script src="https://cdn.tailwindcss.com"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>SmartStudy AI</title>
+
+  <link rel="icon" sizes="32x32"
+    href="https://i.ibb.co/N2Z36tWh/colorful-logo-with-words-study-study-it-1205884-1582.jpg">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <link rel="stylesheet" href="./../css/signup.css">
+
+  <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
 </head>
 
-<body class="bg-gray-100 flex justify-center items-center h-screen">
+<body>
 
-<div class="bg-white p-6 rounded shadow w-80">
+<!-- ================= HEADER ================= -->
+<header class="header"> <div class="logo-box">
+      <img src="https://i.ibb.co/N2Z36tWh/colorful-logo-with-words-study-study-it-1205884-1582.jpg">
+      <h1>SmartStudy AI</h1>
+    </div>
 
-  <h2 class="text-xl font-bold mb-4 text-center">Signup</h2>
+    <div class="nav-actions">
+      <a href="./../index.html" class="back-btn">⬅ Home</a>
+    </div>
 
-  <input id="name" placeholder="Name" class="border p-2 w-full mb-2">
-  <input id="email" placeholder="Email" class="border p-2 w-full mb-2">
-  <input id="password" type="password" placeholder="Password" class="border p-2 w-full mb-2">
+  </div>
+</header>
 
-  <button onclick="signup()" class="bg-blue-600 text-white w-full py-2 rounded">
-    Signup
-  </button>
+<!-- ================= SIGNUP ================= -->
+<div class="signup-wrapper">
 
-  <p id="msg" class="text-green-600 mt-2"></p>
+  <div class="signup-card">
+
+    <div class="logo">📘 Create Account</div>
+    <p class="title">Join SmartStudy AI 🚀</p>
+
+    <input id="name" type="text" placeholder="Full Name">
+    <input id="email" type="email" placeholder="Email">
+
+    <input id="password" type="password" placeholder="Password">
+    <input id="confirmPassword" type="password" placeholder="Confirm Password">
+
+    <label class="terms">
+      <input id="terms" type="checkbox">
+      I agree to Terms & Conditions
+    </label>
+
+    <button class="signup-btn" onclick="signup()">Signup</button>
+
+    <p class="bottom-text">
+      Already have an account?
+      <a href="./login.html">Login here</a>
+    </p>
+
+  </div>
 
 </div>
 
 <script src="../js/signup.js"></script>
+
 </body>
 </html>

@@ -1,156 +1,236 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8">
-<title>Dashboard - SmartStudy AI</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<script src="https://cdn.tailwindcss.com"></script>
-<link rel="stylesheet" href="../css/dashboard.css">
-<link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+  <title>SmartStudy AI</title>
 
+  <link rel="icon" sizes="32x32" href="https://i.ibb.co/N2Z36tWh/colorful-logo-with-words-study-study-it-1205884-1582.jpg">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <link rel="stylesheet" href="./../css/dashboard.css">
+
+  <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
 </head>
 
-<body class="bg-gray-100">
+<body class="bg-gray-100 font-[Poppins]">
 
-<!-- ================= HEADER (SAME AS INDEX) ================= -->
-<header class="fixed w-full top-0 z-50 text-white p-5 shadow-lg bg-blue-700">
-  <div class="flex justify-between items-center max-w-7xl mx-auto">
-    
-    <h1 class="text-2xl font-bold">📘 SmartStudy AI</h1>
+  <!-- HEADER -->
+  <header class="fixed w-full top-0 z-50 text-white p-5 shadow-lg bg-blue-700">
+    <div class="flex justify-between items-center max-w-7xl mx-auto">
 
-    <nav class="space-x-4 text-lg flex items-center flex-wrap">
+      <div class="flex items-center gap-3">
+        <img src="https://i.ibb.co/N2Z36tWh/colorful-logo-with-words-study-study-it-1205884-1582.jpg"
+          class="w-12 h-12 rounded-full object-cover shadow-md">
 
-      <a href="../index.html">🏠 Home</a>
-      <a href="dashboard.html" class="font-bold underline">📊 Dashboard</a>
-      <a href="planner.html">📅 Planner</a>
-      <a href="progress.html">📈 Progress</a>
-      <a href="chatbot.html">🤖 AI Chat</a>
-      <a href="courses.html">📚 Courses</a>
-      <a href="contact.html">📞 Contact</a>
+        <h1 class="text-2xl font-bold">SmartStudy AI</h1>
+      </div>
 
-      <a href="login.html" class="bg-white text-blue-700 px-3 py-1 rounded">
-        🔐 Login
-      </a>
+      <button id="menuBtn" class="md:hidden text-2xl">☰</button>
 
-    </nav>
-  </div>
-</header>
+      <nav id="navMenu"
+        class="hidden md:flex space-x-4 text-lg flex-col md:flex-row absolute md:static bg-blue-700 w-full left-0 top-16 md:w-auto p-5 md:p-0">
 
-<!-- ================= MAIN CONTENT ================= -->
-<div class="flex pt-24">
+        <a href="../index.html">Home</a>
+        <a href="./dashboard.html">Dashboard</a>
+        <a href="./progress.html">Progress</a>
+        <a href="./planner.html">Planner</a>
+        <a href="./courses.html">Courses</a>
+        <a href="./chatbot.html">AI Chat</a>
+        <a href="./contact.html">Contact</a>
 
-<!-- SIDEBAR -->
-<div class="sidebar w-64 text-white p-4">
-  <h2 class="text-lg font-bold mb-3">Menu</h2>
-  <a href="dashboard.html">📊 Dashboard</a>
-  <a href="planner.html">📅 Planner</a>
-  <a href="progress.html">📈 Progress</a>
-  <a href="chatbot.html">🤖 Chatbot</a>
-  <a href="courses.html">📚 Courses</a>
-  <a href="contact.html">📞 Contact</a>
-</div>
+        <a href="./login.html" class="bg-white text-blue-700 px-3 py-1 rounded">🔐 Login</a>
 
-<!-- MAIN -->
-<div class="main p-6 w-full">
-
-<h2 class="text-2xl font-bold mb-4">Welcome Back 👋</h2>
-
-<!-- CARDS -->
-<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-
-  <div class="card p-5 shadow">
-    <h3>📅 Tasks</h3>
-    <p id="taskCount" class="text-2xl">0</p>
-  </div>
-
-  <div class="card p-5 shadow">
-    <h3>⏱ Study Time</h3>
-    <p id="studyTime" class="text-2xl">0 min</p>
-  </div>
-
-  <div class="card p-5 shadow">
-    <h3>📊 Progress</h3>
-    <div class="bg-gray-200 h-4 rounded mt-2">
-      <div id="progressBar" class="bg-green-500 h-4 rounded" style="width:20%"></div>
+      </nav>
     </div>
+  </header>
+
+  <!-- MAIN -->
+  <div class="pt-28 max-w-7xl mx-auto p-5">
+
+    <h2 class="text-3xl font-bold mb-6">📊 Smart Study Control Center</h2>
+
+    <!-- STATS -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
+
+      <div class="dash-card">
+        <h3>⏱ Study Time</h3>
+        <p id="time">0</p>
+      </div>
+
+      <div class="dash-card">
+        <h3>✅ Tasks Done</h3>
+        <p id="taskCount">0</p>
+      </div>
+
+      <div class="dash-card">
+        <h3>🎯 Focus</h3>
+        <p id="focus">0</p>
+      </div>
+
+      <div class="dash-card">
+        <h3>🔥 Streak</h3>
+        <p id="streak">0</p>
+      </div>
+
+    </div>
+
+    <!-- PROGRESS -->
+    <div class="mt-10 bg-white p-6 rounded shadow">
+      <h3 class="text-xl font-bold mb-4">📊 Weekly Progress</h3>
+
+      <div class="mb-3">
+        <p>Math</p>
+        <div class="w-full bg-gray-200 h-3 rounded">
+          <div id="mathBar" class="bg-blue-500 h-3 rounded"></div>
+        </div>
+      </div>
+
+      <div class="mb-3">
+        <p>Coding</p>
+        <div class="w-full bg-gray-200 h-3 rounded">
+          <div id="codeBar" class="bg-green-500 h-3 rounded"></div>
+        </div>
+      </div>
+
+      <div>
+        <p>Science</p>
+        <div class="w-full bg-gray-200 h-3 rounded">
+          <div id="sciBar" class="bg-purple-500 h-3 rounded"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CHARTS -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-10">
+
+      <div class="chart-box">
+        <h3 class="font-bold mb-2">📈 Weekly Study</h3>
+        <canvas id="lineChart"></canvas>
+      </div>
+
+      <div class="chart-box">
+        <h3 class="font-bold mb-2">📊 Subject Distribution</h3>
+        <canvas id="pieChart"></canvas>
+      </div>
+
+    </div>
+
+    <!-- TASK -->
+    <div class="mt-10 bg-white p-6 rounded shadow">
+      <h3 class="text-xl font-bold mb-4">📅 Tasks</h3>
+
+      <div class="flex gap-2">
+        <input id="taskInput" class="border p-2 w-full rounded" placeholder="Enter task">
+        <button onclick="addTask()" class="bg-blue-600 text-white px-4 rounded">Add</button>
+      </div>
+
+      <ul id="taskList" class="mt-4 space-y-2"></ul>
+    </div>
+
+    <!-- GOALS -->
+    <div class="mt-10 bg-white p-6 rounded shadow">
+      <h3 class="text-xl font-bold mb-4">🎯 Goals</h3>
+
+      <ul id="goalList" class="space-y-2"></ul>
+
+      <div class="flex gap-2 mt-4">
+        <input id="goalInput" class="border p-2 w-full rounded" placeholder="Add goal">
+        <button onclick="addGoal()" class="bg-green-600 text-white px-4 rounded">Add</button>
+      </div>
+    </div>
+
   </div>
+<!-- ================= FOOTER ================= -->
+<footer class="bg-gray-900 text-white py-12">
 
-</div>
+  <div class="max-w-7xl mx-auto px-5 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-10">
 
-<!-- TODO -->
-<div class="mt-8 card p-5 shadow">
-  <h3 class="text-xl mb-3">📝 To-Do List</h3>
-
-  <input id="taskInput" placeholder="Enter task" class="border p-2 rounded w-1/2">
-  <button onclick="addTask()" class="bg-blue-600 text-white px-4 py-2 rounded">Add</button>
-
-  <ul id="taskList" class="mt-4"></ul>
-</div>
-
-<!-- TIMER -->
-<div class="mt-8 card p-5 shadow">
-  <h3 class="text-xl mb-3">⏱ Pomodoro Timer</h3>
-
-  <p id="timer" class="text-3xl mb-3">25:00</p>
-
-  <button onclick="startTimer()" class="bg-green-500 text-white px-4 py-2 rounded">Start</button>
-  <button onclick="resetTimer()" class="bg-red-500 text-white px-4 py-2 rounded">Reset</button>
-</div>
-
-</div>
-</div>
-
-<!-- ================= FOOTER (SAME AS INDEX WITH EMOJIS) ================= -->
-<footer class="bg-gray-900 text-white py-10 mt-10">
-
-  <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-8">
-
+    <!-- ABOUT -->
     <div>
-      <h3 class="font-bold text-lg mb-3">📘 SmartStudy AI</h3>
-      <p class="text-gray-400">
-        🎯 Your smart study partner <br>
-        🤖 Powered by AI tools <br>
-        🚀 Boost your productivity
+      <h3 class="font-bold text-lg mb-4">📘 SmartStudy AI</h3>
+      <p class="text-gray-400 leading-6">
+        🎯 Smart study partner <br>
+        🤖 AI powered tools <br>
+        🚀 Boost productivity <br>
+        📚 Learn smarter every day
       </p>
     </div>
 
+    <!-- QUICK LINKS -->
     <div>
-      <h3 class="font-bold mb-3">🔗 Quick Links</h3>
+      <h3 class="font-bold text-lg mb-4">🔗 Quick Links</h3>
       <ul class="text-gray-400 space-y-2">
-        <li>🏠 <a href="dashboard.html">Dashboard</a></li>
-        <li>📅 <a href="planner.html">Planner</a></li>
-        <li>📊 <a href="progress.html">Progress</a></li>
-        <li>🤖 <a href="chatbot.html">AI Chat</a></li>
+        <li><a href="../index.html" class="hover:text-yellow-400">Home</a></li>
+        <li><a href="pages/dashboard.html" class="hover:text-yellow-400">Dashboard</a></li>
+        <li><a href="pages/planner.html" class="hover:text-yellow-400">Planner</a></li>
+        <li><a href="pages/progress.html" class="hover:text-yellow-400">Progress</a></li>
+        <li><a href="pages/chatbot.html" class="hover:text-yellow-400">AI Chat</a></li>
       </ul>
     </div>
 
+    <!-- CONTACT -->
     <div>
-      <h3 class="font-bold mb-3">📚 Courses</h3>
-      <ul class="text-gray-400 space-y-2">
-        <li>💻 Programming</li>
-        <li>🧠 AI Basics</li>
-        <li>⏳ Time Management</li>
-      </ul>
-    </div>
-
-    <div>
-      <h3 class="font-bold mb-3">📞 Contact</h3>
-      <p class="text-gray-400">
-        📧 support@smartstudy.ai <br>
+      <h3 class="font-bold text-lg mb-4">📞 Contact</h3>
+      <p class="text-gray-400 leading-6">
+        📧 <a href="mailto:support@smartstudy.ai" class="hover:text-yellow-400">support@smartstudy.ai</a> <br>
         📍 India <br>
-        ☎️ +91 98765 43210
+        ☎️ <a href="tel:+919876543210" class="hover:text-yellow-400">+91 98765 43210</a>
       </p>
+
+      <!-- SOCIAL -->
+      <div class="flex gap-3 mt-4">
+
+        <a href="#" class="bg-white p-2 rounded-full hover:scale-110 transition">
+          <img src="https://cdn-icons-png.flaticon.com/512/733/733547.png" class="w-5 h-5">
+        </a>
+
+        <a href="#" class="bg-white p-2 rounded-full hover:scale-110 transition">
+          <img src="https://cdn-icons-png.flaticon.com/512/733/733558.png" class="w-5 h-5">
+        </a>
+
+        <a href="#" class="bg-white p-2 rounded-full hover:scale-110 transition">
+          <img src="https://cdn-icons-png.flaticon.com/512/733/733579.png" class="w-5 h-5">
+        </a>
+
+        <a href="#" class="bg-white p-2 rounded-full hover:scale-110 transition">
+          <img src="https://cdn-icons-png.flaticon.com/512/1384/1384060.png" class="w-5 h-5">
+        </a>
+
+      </div>
+    </div>
+
+    <!-- SUBSCRIBE -->
+    <div>
+      <h3 class="font-bold text-lg mb-4">📩 Subscribe</h3>
+
+      <p class="text-gray-400 text-sm mb-2">
+        Get study tips & updates 📚
+      </p>
+
+      <input id="email" type="email"
+        class="w-full p-2 rounded text-black outline-none"
+        placeholder="Enter your email">
+
+      <button onclick="subscribe()"
+        class="mt-3 bg-yellow-400 hover:bg-yellow-500 text-black px-4 py-2 rounded w-full font-semibold transition">
+        Subscribe 🚀
+      </button>
     </div>
 
   </div>
 
-  <div class="text-center text-gray-500 mt-8 border-t border-gray-700 pt-4">
-    © 2026 📘 SmartStudy AI | Made with ❤️ for students
+  <!-- BOTTOM LINE -->
+  <div class="max-w-7xl mx-auto mt-10 border-t border-gray-700 pt-5 text-center text-gray-400 text-sm">
+    📘 SmartStudy AI | Made with ❤️ for students
   </div>
 
 </footer>
 
-<script src="../js/dashboard.js"></script>
+  <script src="../js/dashboard.js"></script>
 
 </body>
 </html>

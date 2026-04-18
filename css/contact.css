@@ -1,0 +1,289 @@
+/* ================= GLOBAL ================= */
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+body{
+  font-family:Poppins, sans-serif;
+  background:#f1f5f9;
+}
+
+/* ================= HEADER ================= */
+.header{
+  background:#1d4ed8;
+  color:white;
+  padding:12px 0;
+  position:fixed;
+  width:100%;
+  top:0;
+  z-index:1000;
+  box-shadow:0 10px 20px rgba(0,0,0,0.2);
+}
+
+.header-inner{
+  max-width:1200px;
+  margin:auto;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:0 20px;
+  flex-wrap:wrap;
+}
+
+.logo{
+  font-size:20px;
+  font-weight:bold;
+}
+
+/* NAV */
+.nav{
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:center;
+}
+
+.nav a{
+  color:white;
+  margin:8px 12px;
+  text-decoration:none;
+  position:relative;
+  transition:0.3s;
+  font-size:15px;
+}
+
+.nav a::after{
+  content:"";
+  position:absolute;
+  width:0%;
+  height:2px;
+  bottom:-4px;
+  left:0;
+  background:yellow;
+  transition:0.3s;
+}
+
+.nav a:hover::after{
+  width:100%;
+}
+
+.nav a:hover{
+  color:#facc15;
+}
+
+.nav .active{
+  color:#facc15;
+}
+
+/* ================= HERO ================= */
+.hero{
+  margin-top:90px;
+  text-align:center;
+  padding:60px 20px;
+  background:linear-gradient(135deg,#3b82f6,#6366f1);
+  color:white;
+  animation:fadeIn 1s ease-in-out;
+}
+
+.hero h1{
+  font-size:clamp(24px, 5vw, 40px);
+}
+
+.hero p{
+  font-size:clamp(14px, 2.5vw, 18px);
+  margin-top:10px;
+}
+
+/* ================= CONTACT ================= */
+.contact-container{
+  max-width:1200px;
+  margin:30px auto;
+  display:grid;
+  grid-template-columns:repeat(auto-fit, minmax(280px,1fr));
+  gap:20px;
+  padding:15px;
+}
+
+/* CARD */
+.card{
+  background:white;
+  padding:20px;
+  border-radius:15px;
+  box-shadow:0 10px 25px rgba(0,0,0,0.1);
+  transition:0.4s;
+}
+
+.card:hover{
+  transform:translateY(-8px);
+}
+
+/* INFO */
+.info-box{
+  background:#e2e8f0;
+  padding:12px;
+  margin:8px 0;
+  border-radius:8px;
+  transition:0.3s;
+  font-size:14px;
+}
+
+.info-box:hover{
+  background:#dbeafe;
+  transform:scale(1.05);
+}
+
+/* SOCIAL */
+.social{
+  margin-top:15px;
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+}
+
+.social span{
+  background:#1d4ed8;
+  color:white;
+  padding:8px 10px;
+  border-radius:8px;
+  cursor:pointer;
+  transition:0.3s;
+  font-size:14px;
+}
+
+.social span:hover{
+  transform:scale(1.2) rotate(5deg);
+}
+
+/* FORM */
+.form input,
+.form textarea{
+  width:100%;
+  margin:8px 0;
+  padding:12px;
+  border-radius:8px;
+  border:1px solid #ccc;
+  font-size:14px;
+}
+
+.form textarea{
+  height:120px;
+  resize:none;
+}
+
+.form button{
+  width:100%;
+  padding:12px;
+  background:#1d4ed8;
+  color:white;
+  border:none;
+  border-radius:8px;
+  cursor:pointer;
+  transition:0.3s;
+  font-size:16px;
+}
+
+.form button:hover{
+  background:#2563eb;
+  transform:scale(1.05);
+}
+
+/* ================= MAP ================= */
+.map-section{
+  text-align:center;
+  margin:40px 0;
+  padding:0 10px;
+}
+
+.map-box iframe{
+  width:100%;
+  max-width:1000px;
+  height:300px;
+  border:0;
+  border-radius:15px;
+  box-shadow:0 10px 20px rgba(0,0,0,0.2);
+}
+
+/* ================= FOOTER ================= */
+footer{
+  padding:20px;
+}
+
+footer a {
+  transition: 0.3s;
+  display: inline-block;
+}
+
+footer a:hover {
+  color: #facc15;
+  transform: translateX(5px);
+}
+
+footer .flex a:hover {
+  transform: scale(1.2) rotate(5deg);
+}
+
+footer p{
+  line-height: 1.6;
+  font-size:14px;
+}
+
+footer div p{
+  text-align:left;
+}
+
+#footerText{
+  text-align:center;
+  white-space:nowrap;
+  display:block;
+}
+
+/* ================= ANIMATION ================= */
+@keyframes fadeIn{
+  from{opacity:0; transform:translateY(20px);}
+  to{opacity:1; transform:translateY(0);}
+}
+
+/* ================= RESPONSIVE ================= */
+
+/* Tablet */
+@media(max-width:992px){
+  .hero{
+    padding:50px 15px;
+  }
+}
+
+/* Mobile */
+@media(max-width:768px){
+  .header-inner{
+    flex-direction:column;
+    gap:10px;
+  }
+
+  .nav{
+    justify-content:center;
+  }
+
+  .nav a{
+    font-size:14px;
+  }
+
+  .hero{
+    margin-top:110px;
+  }
+}
+
+/* Small Mobile */
+@media(max-width:480px){
+  .hero{
+    padding:40px 10px;
+  }
+
+  .form button{
+    font-size:14px;
+  }
+
+  #footerText{
+    white-space:normal;
+  }
+}

@@ -1,0 +1,214 @@
+/* ================= GLOBAL ================= */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  width: 100%;
+  overflow-x: hidden;
+}
+
+/* ================= LINKS ================= */
+a {
+  transition: 0.3s;
+  font-size: 16px;
+}
+
+a:hover {
+  color: #facc15;
+}
+
+/* ================= HEADER ================= */
+header {
+  width: 100%;
+  backdrop-filter: blur(10px);
+  background: rgba(37, 99, 235, 0.95);
+  transition: 0.4s;
+}
+
+header a {
+  position: relative;
+}
+
+/* underline hover */
+header a::after {
+  content: "";
+  position: absolute;
+  width: 0%;
+  height: 2px;
+  bottom: -3px;
+  left: 0;
+  background: #facc15;
+  transition: 0.3s;
+}
+
+header a:hover::after {
+  width: 100%;
+}
+
+/* ================= CARD ================= */
+.bg-white {
+  transition: 0.3s;
+  border-radius: 12px;
+}
+
+.bg-white:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 25px rgba(0,0,0,0.2);
+}
+
+/* ================= FORM ================= */
+input,
+select,
+textarea {
+  outline: none;
+  transition: 0.3s;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  border-color: #3b82f6;
+  box-shadow: 0 0 8px rgba(59,130,246,0.4);
+}
+
+/* ================= BUTTON ================= */
+button {
+  transition: 0.3s;
+}
+
+button:hover {
+  transform: scale(1.05);
+}
+
+/* ================= TASK CARD ================= */
+#taskList > div {
+  transition: 0.3s;
+}
+
+#taskList > div:hover {
+  transform: translateY(-8px) scale(1.03);
+  box-shadow: 0 15px 25px rgba(0,0,0,0.2);
+}
+
+/* ================= PROGRESS BAR ================= */
+#progressBar {
+  transition: width 0.6s ease-in-out;
+}
+
+/* ================= FOOTER ================= */
+footer {
+  width: 100%;
+}
+
+footer a {
+  transition: 0.3s;
+  display: inline-block;
+}
+
+footer a:hover {
+  color: #facc15;
+  transform: translateX(5px);
+}
+
+/* social hover */
+footer .flex a:hover {
+  transform: scale(1.2) rotate(5deg);
+}
+
+footer p {
+  line-height: 1.6;
+}
+
+/* fix overflow */
+#footerText {
+  text-align: center;
+  white-space: normal;
+  word-break: break-word;
+}
+
+/* input focus */
+footer input:focus {
+  outline: none;
+  box-shadow: 0 0 10px #facc15;
+}
+
+/* ================= ANIMATION ================= */
+.fade-in {
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ================= RESPONSIVE ================= */
+
+/* Small Mobile */
+@media (max-width: 480px) {
+
+  body {
+    font-size: 13px;
+  }
+
+  header nav {
+    flex-direction: column;
+    gap: 10px;
+    text-align: center;
+  }
+
+  .bg-white {
+    padding: 12px !important;
+  }
+
+  input, select, textarea {
+    font-size: 13px;
+  }
+
+  button {
+    font-size: 13px;
+  }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+
+  header nav {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .bg-white {
+    padding: 15px !important;
+  }
+
+  button {
+    width: 100%;
+  }
+}
+
+/* Tablet */
+@media (max-width: 1024px) {
+
+  .bg-white {
+    padding: 18px;
+  }
+}
+
+/* Large Screens */
+@media (min-width: 1025px) {
+
+  body {
+    font-size: 16px;
+  }
+}

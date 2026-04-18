@@ -152,11 +152,6 @@ button:hover {
   transition: width 1.5s ease-in-out;
 }
 
-/* ================= FOOTER (HOME SAME) ================= */
-footer a {
-  transition: 0.3s;
-  display: inline-block;
-}
 
 footer a:hover {
   color: #facc15;
@@ -171,6 +166,11 @@ footer p {
   line-height: 1.6;
 }
 
+/* ================= FOOTER (HOME SAME) ================= */
+footer a {
+  transition: 0.3s;
+  display: inline-block;
+}
 footer div p {
   text-align: left;
 }

@@ -2,53 +2,51 @@
 <html lang="en">
 
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Planner - SmartStudy AI</title>
+  <title>SmartStudy AI</title>
+ <link rel="icon" sizes="32x32" href="https://i.ibb.co/N2Z36tWh/colorful-logo-with-words-study-study-it-1205884-1582.jpg">
+ 
+  <script src="https://cdn.tailwindcss.com"></script>
 
-<link rel="icon"
-href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='0.9em' font-size='90'%3E📘%3C/text%3E%3C/svg%3E">
+  <link rel="stylesheet" href="./../css/planner.css">
 
-<script src="https://cdn.tailwindcss.com"></script>
-<link rel="stylesheet" href="../css/planner.css">
-
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-<link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
 </head>
 
 <body class="bg-gray-100 font-[Poppins] overflow-x-hidden">
 
-<!-- ================= HEADER ================= -->
-<header class="fixed w-full top-0 z-50 text-white shadow-lg bg-blue-700">
-  <div class="flex justify-between items-center max-w-7xl mx-auto px-5 py-4">
 
-    <h1 class="text-2xl font-bold">📘 SmartStudy AI</h1>
+   <!-- HEADER -->
+  <header class="fixed w-full top-0 z-50 text-white p-5 shadow-lg bg-blue-700">
+    <div class="flex justify-between items-center max-w-7xl mx-auto">
 
-    <button id="menuBtn" class="md:hidden text-2xl">☰</button>
+      <div class="flex items-center gap-3">
+        <img src="https://i.ibb.co/N2Z36tWh/colorful-logo-with-words-study-study-it-1205884-1582.jpg"
+          class="w-12 h-12 rounded-full object-cover shadow-md">
 
-    <nav id="navMenu"
-      class="hidden md:flex gap-4 text-lg flex-col md:flex-row absolute md:static bg-blue-700 w-full left-0 top-16 md:w-auto p-5 md:p-0">
+        <h1 class="text-2xl font-bold">SmartStudy AI</h1>
+      </div>
 
-      <a href="../index.html">Home</a>
-      <a href="dashboard.html">Dashboard</a>
-      <a href="planner.html">Planner</a>
-      <a href="progress.html">Progress</a>
-      <a href="chatbot.html">AI Chat</a>
-      <a href="courses.html">Courses</a>
-      <a href="contact.html">Contact</a>
+      <button id="menuBtn" class="md:hidden text-2xl">☰</button>
 
-      <a href="login.html" class="bg-white text-blue-700 px-3 py-1 rounded">
-        🔐 Login
-      </a>
+      <nav id="navMenu"
+        class="hidden md:flex space-x-4 text-lg flex-col md:flex-row absolute md:static bg-blue-700 w-full left-0 top-16 md:w-auto p-5 md:p-0">
 
-      <a href="signup.html" class="bg-white text-blue-700 px-3 py-1 rounded">
-        Signup
-      </a>
+        <a href="../index.html">Home</a>
+        <a href="./dashboard.html">Dashboard</a>
+        <a href="./progress.html">Progress</a>
+        <a href="./planner.html">Planner</a>
+        <a href="./courses.html">Courses</a>
+        <a href="./chatbot.html">AI Chat</a>
+        <a href="./contact.html">Contact</a>
 
-    </nav>
-  </div>
-</header>
+        <a href="./login.html" class="bg-white text-blue-700 px-3 py-1 rounded">🔐 Login</a>
+
+      </nav>
+    </div>
+  </header>
 
 <!-- ================= HERO ================= -->
 <section class="pt-28 text-center py-16 bg-blue-600 text-white">
@@ -152,78 +150,91 @@ href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 
 
 </section>
 
+<!-- ================= FOOTER ================= -->
+<footer class="bg-gray-900 text-white py-12">
 
-  <!-- ================= FOOTER ================= -->
-  <footer class="bg-gray-900 text-white py-10">
+  <div class="max-w-7xl mx-auto px-5 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-10">
 
-    <div class="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 px-5">
-
-      <!-- ABOUT -->
-      <div>
-        <h3 class="font-bold text-lg mb-3">📘 SmartStudy AI</h3>
-        <p class="text-gray-400">
-          🎯 Smart study partner <br>
-          🤖 AI powered tools <br>
-          🚀 Boost productivity <br>
-          📚 Learn smarter every day
-        </p>
-      </div>
-
-      <!-- QUICK LINKS -->
-      <div>
-        <h3 class="font-bold mb-3">🔗 Quick Links</h3>
-        <ul class="text-gray-400 space-y-2">
-          <li><a href="../index.html">🏠 Home</a></li>
-          <li><a href="pages/dashboard.html">📊 Dashboard</a></li>
-          <li><a href="pages/planner.html">📅 Planner</a></li>
-          <li><a href="pages/progress.html">📈 Progress</a></li>
-          <li><a href="pages/chatbot.html">🤖 AI Chat</a></li>
-        </ul>
-      </div>
-
-      <!-- CONTACT -->
-      <div>
-        <h3 class="font-bold mb-3">📞 Contact</h3>
-        <p class="text-gray-400">
-          📧 <a href="mailto:support@smartstudy.ai">support@smartstudy.ai</a> <br>
-          📍 India <br>
-          ☎️ <a href="tel:+919876543210">+91 98765 43210</a>
-        </p>
-
-        <!-- SOCIAL -->
-        <div class="flex gap-3 mt-4">
-          <a href="#" class="bg-blue-600 px-3 py-2 rounded">📘</a>
-          <a href="#" class="bg-pink-500 px-3 py-2 rounded">📸</a>
-          <a href="#" class="bg-blue-400 px-3 py-2 rounded">🐦</a>
-          <a href="#" class="bg-red-600 px-3 py-2 rounded">▶</a>
-        </div>
-      </div>
-
-      <!-- SUBSCRIBE -->
-      <div>
-        <h3 class="font-bold mb-3">📩 Subscribe</h3>
-
-        <input id="email" type="email" class="w-full p-2 rounded text-black" placeholder="Enter your email">
-
-        <button onclick="subscribe()" class="mt-2 bg-yellow-400 text-black px-4 py-2 rounded w-full">
-          Subscribe 🚀
-        </button>
-
-        <p class="text-gray-400 text-sm mt-3">
-          Get study tips & updates 📚
-        </p>
-      </div>
-
+    <!-- ABOUT -->
+    <div>
+      <h3 class="font-bold text-lg mb-4">📘 SmartStudy AI</h3>
+      <p class="text-gray-400 leading-6">
+        🎯 Smart study partner <br>
+        🤖 AI powered tools <br>
+        🚀 Boost productivity <br>
+        📚 Learn smarter every day
+      </p>
     </div>
-    
-    <!-- EXTRA LINKS -->
-    <div class="max-w-7xl mx-auto mt-8 border-t border-gray-700 pt-6 text-center">
 
-  
+    <!-- QUICK LINKS -->
+    <div>
+      <h3 class="font-bold text-lg mb-4">🔗 Quick Links</h3>
+      <ul class="text-gray-400 space-y-2">
+        <li><a href="../index.html" class="hover:text-yellow-400">Home</a></li>
+        <li><a href="pages/dashboard.html" class="hover:text-yellow-400">Dashboard</a></li>
+        <li><a href="pages/planner.html" class="hover:text-yellow-400">Planner</a></li>
+        <li><a href="pages/progress.html" class="hover:text-yellow-400">Progress</a></li>
+        <li><a href="pages/chatbot.html" class="hover:text-yellow-400">AI Chat</a></li>
+      </ul>
     </div>
-    <p id="footerText" ckass="text-grey-500 mt-6 text-center">📘 SmartStudy AI | Made with ❤️ for students</p>
 
-  </footer>
+    <!-- CONTACT -->
+    <div>
+      <h3 class="font-bold text-lg mb-4">📞 Contact</h3>
+      <p class="text-gray-400 leading-6">
+        📧 <a href="mailto:support@smartstudy.ai" class="hover:text-yellow-400">support@smartstudy.ai</a> <br>
+        📍 India <br>
+        ☎️ <a href="tel:+919876543210" class="hover:text-yellow-400">+91 98765 43210</a>
+      </p>
+
+      <!-- SOCIAL -->
+      <div class="flex gap-3 mt-4">
+
+        <a href="#" class="bg-white p-2 rounded-full hover:scale-110 transition">
+          <img src="https://cdn-icons-png.flaticon.com/512/733/733547.png" class="w-5 h-5">
+        </a>
+
+        <a href="#" class="bg-white p-2 rounded-full hover:scale-110 transition">
+          <img src="https://cdn-icons-png.flaticon.com/512/733/733558.png" class="w-5 h-5">
+        </a>
+
+        <a href="#" class="bg-white p-2 rounded-full hover:scale-110 transition">
+          <img src="https://cdn-icons-png.flaticon.com/512/733/733579.png" class="w-5 h-5">
+        </a>
+
+        <a href="#" class="bg-white p-2 rounded-full hover:scale-110 transition">
+          <img src="https://cdn-icons-png.flaticon.com/512/1384/1384060.png" class="w-5 h-5">
+        </a>
+
+      </div>
+    </div>
+
+    <!-- SUBSCRIBE -->
+    <div>
+      <h3 class="font-bold text-lg mb-4">📩 Subscribe</h3>
+
+      <p class="text-gray-400 text-sm mb-2">
+        Get study tips & updates 📚
+      </p>
+
+      <input id="email" type="email"
+        class="w-full p-2 rounded text-black outline-none"
+        placeholder="Enter your email">
+
+      <button onclick="subscribe()"
+        class="mt-3 bg-yellow-400 hover:bg-yellow-500 text-black px-4 py-2 rounded w-full font-semibold transition">
+        Subscribe 🚀
+      </button>
+    </div>
+
+  </div>
+
+  <!-- BOTTOM LINE -->
+  <div class="max-w-7xl mx-auto mt-10 border-t border-gray-700 pt-5 text-center text-gray-400 text-sm">
+    📘 SmartStudy AI | Made with ❤️ for students
+  </div>
+
+</footer>
 
 <script src="../js/planner.js"></script>
 

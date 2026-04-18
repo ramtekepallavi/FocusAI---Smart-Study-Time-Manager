@@ -8,6 +8,32 @@ function deleteCourse(btn) {
   const card = btn.closest(".course-card");
   card.remove();
 }
+// ================= COURSE SEARCH =================
+function searchCourse() {
+  let input = document.getElementById("searchInput").value.toLowerCase();
+  let courses = document.querySelectorAll(".course-card");
+  let found = false;
+
+  courses.forEach(card => {
+    let title = card.querySelector("h4").innerText.toLowerCase();
+
+    if (title.includes(input)) {
+      card.style.display = "block";
+      found = true;
+    } else {
+      card.style.display = "none";
+    }
+  });
+
+  // NO RESULT MESSAGE
+  let noResult = document.getElementById("noResult");
+
+  if (found) {
+    noResult.style.display = "none";
+  } else {
+    noResult.style.display = "block";
+  }
+}
 function subscribe() {
   let email = document.getElementById("email").value;
 

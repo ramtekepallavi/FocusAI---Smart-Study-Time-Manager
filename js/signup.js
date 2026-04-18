@@ -1,14 +1,18 @@
-/* SIGNUP FUNCTION */
 function signup(){
 
-  let name = document.getElementById("name").value;
-  let email = document.getElementById("email").value;
+  let name = document.getElementById("name").value.trim();
+  let email = document.getElementById("email").value.trim();
   let password = document.getElementById("password").value;
   let confirmPassword = document.getElementById("confirmPassword").value;
   let terms = document.getElementById("terms").checked;
 
   if(name === "" || email === "" || password === "" || confirmPassword === ""){
-    alert("⚠ Please fill all fields");
+    alert("⚠ Please fill all fields properly");
+    return;
+  }
+
+  if(!email.includes("@") || !email.includes(".")){
+    alert("❗ Enter valid email");
     return;
   }
 
@@ -27,6 +31,7 @@ function signup(){
     return;
   }
 
-  alert("🎉 Signup Successful!");
+  alert("🎉 Account Created Successfully!");
+
   window.location.href = "./login.html";
 }

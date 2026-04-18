@@ -1,24 +1,27 @@
+ 
 /* ================= GLOBAL ================= */
 body {
   font-family: 'Poppins', sans-serif;
   scroll-behavior: smooth;
   margin: 0;
   padding: 0;
+  background: #f3f4f6;
 }
 
 /* ================= HEADER ================= */
 header {
   backdrop-filter: blur(12px);
   background: rgba(37, 99, 235, 0.9);
-  transition: 0.3s;
+  transition: all 0.3s ease;
 }
 
 header a {
   transition: 0.3s;
   position: relative;
+  font-weight: 500;
 }
 
-/* NAV HOVER UNDERLINE EFFECT */
+/* underline animation */
 header a::after {
   content: "";
   position: absolute;
@@ -26,7 +29,7 @@ header a::after {
   height: 2px;
   background: #facc15;
   left: 0;
-  bottom: -3px;
+  bottom: -4px;
   transition: 0.3s;
 }
 
@@ -38,27 +41,73 @@ header a:hover {
   color: #facc15;
 }
 
-/* ================= HERO ================= */
+/* ================= HERO FULL SCREEN ================= */
 .hero {
-  background: linear-gradient(135deg, #3b82f6, #6366f1);
-  animation: fadeIn 1.5s ease-in-out;
-  padding-left: 15px;
-  padding-right: 15px;
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* BACKGROUND IMAGE */
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  background-image: url("https://images.unsplash.com/photo-1519389950473-47ba0277781c");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  filter: brightness(0.45);
+  transform: scale(1.05);
+  animation: zoomIn 12s infinite alternate ease-in-out;
+}
+
+/* HERO CONTENT CENTER */
+.hero-content {
+  position: relative;
+  z-index: 2;
+  height: 100%;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+
+  padding: 20px;
+  animation: fadeUp 1s ease-in-out;
+}
+
+/* GET STARTED BUTTON */
+.get-started-btn {
+  background: linear-gradient(135deg, #facc15, #f97316);
+  color: black;
+  font-weight: bold;
+  padding: 14px 30px;
+  border-radius: 14px;
+  transition: all 0.3s ease;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+  margin-top: 20px;
+}
+
+.get-started-btn:hover {
+  transform: scale(1.12);
+  box-shadow: 0 0 25px #facc15;
 }
 
 /* ================= CARDS ================= */
 .card {
-  transition: 0.4s;
-  border-radius: 15px;
+  transition: all 0.4s ease;
+  border-radius: 16px;
   cursor: pointer;
 }
 
 .card:hover {
-  transform: translateY(-10px) scale(1.05);
-  box-shadow: 0px 15px 30px rgba(0,0,0,0.25);
+  transform: translateY(-12px) scale(1.05);
+  box-shadow: 0 18px 35px rgba(0,0,0,0.25);
 }
 
-/* ================= WHY CARDS (ADVANCED) ================= */
+/* ================= WHY CARDS ================= */
 .why-card {
   background: white;
   padding: 25px;
@@ -71,22 +120,11 @@ header a:hover {
   cursor: pointer;
 }
 
-/* ICON */
-.why-card span {
-  display: block;
-  font-size: 2rem;
-  margin-bottom: 10px;
-  transition: 0.4s;
-}
-
-/* HOVER */
 .why-card:hover {
-  transform: translateY(-12px) scale(1.07);
-  box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+  transform: translateY(-12px) scale(1.08);
   color: white;
 }
 
-/* GRADIENT BACKGROUND */
 .why-card::before {
   content: "";
   position: absolute;
@@ -101,45 +139,18 @@ header a:hover {
   opacity: 1;
 }
 
-/* KEEP TEXT ABOVE */
 .why-card * {
   position: relative;
   z-index: 1;
 }
 
-/* ICON ANIMATION */
-.why-card:hover span {
-  transform: scale(1.3) rotate(8deg);
-}
-
-/* TEXT */
-.why-card h3 {
-  font-size: 1.1rem;
-  margin-top: 5px;
-}
-
-.why-card p {
-  font-size: 0.9rem;
-  opacity: 0.9;
-}
-
-/* ================= BUTTON ================= */
-button {
-  transition: 0.3s;
-}
-
-button:hover {
-  transform: scale(1.08);
-  box-shadow: 0px 8px 15px rgba(0,0,0,0.2);
-}
-
 /* ================= STATS ================= */
 .stats-box {
-  transition: 0.4s;
+  transition: all 0.4s ease;
 }
 
 .stats-box:hover {
-  transform: scale(1.15);
+  transform: scale(1.2);
   color: #facc15;
 }
 
@@ -151,18 +162,18 @@ button:hover {
   border-radius: 10px;
   cursor: pointer;
   transition: 0.3s;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.05);
 }
 
 .faq-box:hover {
   background: #f9fafb;
+  transform: translateY(-3px);
 }
 
 .faq-box h3 {
-  font-weight: bold;
   position: relative;
 }
 
-/* + / - ICON */
 .faq-box h3::after {
   content: "+";
   position: absolute;
@@ -182,23 +193,37 @@ button:hover {
   margin-top: 10px;
 }
 
-/* ================= FOOTER ================= */
-footer a {
-  transition: 0.3s;
+/* ================= BUTTONS ================= */
+button {
+  transition: all 0.3s ease;
 }
+
+button:hover {
+  transform: scale(1.08);
+}
+
+
 
 footer a:hover {
   color: #facc15;
   transform: translateX(5px);
 }
 
-/* ================= BACK TO TOP ================= */
-button#topBtn {
-  transition: 0.3s;
+footer .flex a:hover {
+  transform: scale(1.2) rotate(5deg);
 }
 
-button#topBtn:hover {
-  background: #1d4ed8;
+footer p {
+  line-height: 1.6;
+}
+
+/* ================= FOOTER (HOME SAME) ================= */
+footer a {
+  transition: 0.3s;
+  display: inline-block;
+}
+footer div p {
+  text-align: left;
 }
 
 /* ================= SCROLLBAR ================= */
@@ -211,15 +236,24 @@ button#topBtn:hover {
   border-radius: 10px;
 }
 
-/* ================= ANIMATION ================= */
-@keyframes fadeIn {
+/* ================= ANIMATIONS ================= */
+@keyframes fadeUp {
   from {
     opacity: 0;
-    transform: translateY(30px);
+    transform: translateY(40px);
   }
   to {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+
+@keyframes zoomIn {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.1);
   }
 }
 
@@ -228,20 +262,16 @@ button#topBtn:hover {
 /* MOBILE */
 @media (max-width: 640px) {
 
-  .hero h2 {
+  .hero-content h2 {
     font-size: 1.8rem;
   }
 
-  .hero p {
-    font-size: 0.9rem;
+  .get-started-btn {
+    padding: 12px 20px;
   }
 
   header {
     padding: 12px;
-  }
-
-  nav {
-    text-align: center;
   }
 
 }
@@ -254,15 +284,15 @@ button#topBtn:hover {
   }
 
   .why-card {
-    padding: 15px;
+    padding: 18px;
   }
 
 }
 
-/* SMALL LAPTOP */
+/* LAPTOP */
 @media (max-width: 1024px) {
 
-  .hero h2 {
+  .hero-content h2 {
     font-size: 2.5rem;
   }
 
@@ -271,7 +301,7 @@ button#topBtn:hover {
 /* LARGE SCREEN */
 @media (min-width: 1280px) {
 
-  .hero h2 {
+  .hero-content h2 {
     font-size: 3.5rem;
   }
 

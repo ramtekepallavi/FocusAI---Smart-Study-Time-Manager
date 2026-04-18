@@ -22,7 +22,48 @@ function togglePass(){
     pass.type = "password";
   }
 }
+// SHOW RESET BOX
+function showResetBox(){
+  document.getElementById("resetBox").classList.remove("hidden");
+}
 
+// CLOSE RESET BOX
+function closeResetBox(){
+  document.getElementById("resetBox").classList.add("hidden");
+}
+
+
+function showResetBox(){
+  document.getElementById("resetBox").classList.remove("hidden");
+}
+
+function closeResetBox(){
+  document.getElementById("resetBox").classList.add("hidden");
+}
+
+
+// RESET PASSWORD
+function resetPassword(){
+
+  let email = document.getElementById("resetEmail").value;
+  let newPass = document.getElementById("newPassword").value;
+
+  if(email === "" || newPass === ""){
+    alert("⚠ Please fill all fields");
+    return;
+  }
+
+  if(newPass.length < 4){
+    alert("⚠ Password too short");
+    return;
+  }
+
+  // (demo purpose - localStorage use)
+  localStorage.setItem(email, newPass);
+
+  alert("✅ Password Reset Successful");
+  closeResetBox();
+}
 /* LOGIN FUNCTION */
 function login(){
 

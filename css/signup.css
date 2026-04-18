@@ -19,8 +19,14 @@ body{
   position:sticky;
   top:0;
   z-index:1000;
+
+  /* FIX ADDED */
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
 }
 
+/* OLD (unchanged) */
 .header-inner{
   max-width:1100px;
   margin:auto;
@@ -29,7 +35,38 @@ body{
   align-items:center;
   flex-wrap:wrap;
   gap:10px;
-  text-align:center;
+}
+
+/* ================= LOGO FIX ================= */
+.logo-box{
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+
+.logo-box img{
+  width:45px;
+  height:45px;
+  border-radius:50%;
+  object-fit:cover;
+  box-shadow:0 5px 15px rgba(0,0,0,0.3);
+  transition:0.3s;
+}
+
+.logo-box img:hover{
+  transform:scale(1.1);
+}
+
+.logo-box h1{
+  font-size:20px;
+  font-weight:bold;
+  white-space:nowrap;
+  transition:0.3s;
+}
+
+.logo-box h1:hover{
+  color:#facc15;
+  transform:scale(1.05);
 }
 
 /* ================= BUTTONS ================= */
@@ -45,6 +82,7 @@ body{
   border-radius:10px;
   text-decoration:none;
   font-size:14px;
+  transition:0.3s;
 }
 
 .back-btn{
@@ -52,9 +90,19 @@ body{
   color:#1d4ed8;
 }
 
+.back-btn:hover{
+  background:#facc15;
+  transform:scale(1.05);
+}
+
 .login-link{
   border:1px solid white;
   color:white;
+}
+
+.login-link:hover{
+  background:white;
+  color:#1d4ed8;
 }
 
 /* ================= WRAPPER ================= */
@@ -74,17 +122,21 @@ body{
   border-radius:15px;
   margin-top:40px;
   box-shadow:0 15px 40px rgba(0,0,0,0.2);
-
-  /* 🔥 spacing fix */
   display:flex;
   flex-direction:column;
   gap:14px;
+  transition:0.3s;
+}
+
+.signup-card:hover{
+  transform:translateY(-6px);
 }
 
 /* ================= TEXT ================= */
 .logo{
   text-align:center;
   font-weight:bold;
+  font-size:20px;
 }
 
 .title{
@@ -99,15 +151,27 @@ input{
   padding:12px;
   border-radius:10px;
   border:1px solid #ccc;
+  transition:0.3s;
+}
+
+input:focus{
+  border-color:#2563eb;
+  box-shadow:0 0 10px rgba(37,99,235,0.3);
+  transform:scale(1.02);
 }
 
 /* ================= TERMS ================= */
 .terms{
   display:flex;
+  align-items:center;
   gap:8px;
-  align-items:flex-start;
   font-size:13px;
-  line-height:1.4;
+}
+
+.terms input{
+  width:16px;
+  height:16px;
+  cursor:pointer;
 }
 
 /* ================= BUTTON ================= */
@@ -119,6 +183,12 @@ input{
   background:#2563eb;
   color:white;
   cursor:pointer;
+  transition:0.3s;
+}
+
+.signup-btn:hover{
+  background:#1d4ed8;
+  transform:scale(1.05);
 }
 
 /* ================= FOOT TEXT ================= */
@@ -127,12 +197,31 @@ input{
   font-size:13px;
 }
 
+.bottom-text a{
+  color:#2563eb;
+  text-decoration:none;
+}
+
+.bottom-text a:hover{
+  color:#facc15;
+}
+
 /* ================= RESPONSIVE ================= */
 @media(max-width:768px){
 
-  .header-inner{
+  .header{
     flex-direction:column;
     align-items:center;
+    gap:10px;
+    text-align:center;
+  }
+
+  .logo-box{
+    justify-content:center;
+  }
+
+  .nav-actions{
+    justify-content:center;
   }
 
   .signup-wrapper{
@@ -151,10 +240,23 @@ input{
   }
 
   .terms{
-    flex-direction:column;
+    flex-direction:row;
   }
 
   .nav-actions{
     justify-content:center;
+  }
+
+  .logo-box img{
+    width:38px;
+    height:38px;
+  }
+
+  .logo-box h1{
+    font-size:16px;
+  }
+
+  .header{
+    padding:10px;
   }
 }
